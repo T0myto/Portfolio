@@ -1,10 +1,10 @@
-# Copilot Instructions - Maël's Portfolio
+# Copilot Instructions - Tom's Portfolio
 
-Professional portfolio website for Maël Lecomte - Full Stack Developer & System Administrator.
+Professional portfolio website for Tom Maudet - Admin System & Network.
 
 ## Quick Architecture
 
-**Tech Stack**: Next.js 14 + TypeScript + TailwindCSS + Framer Motion
+**Tech Stack**: Next.js 16 + React 19 + TypeScript + TailwindCSS + Framer Motion
 
 **Key Features**:
 - Dark mode toggle with next-themes
@@ -19,7 +19,8 @@ Professional portfolio website for Maël Lecomte - Full Stack Developer & System
 3. `/experiences` — Experience timeline with highlights
 4. `/projets` — Project gallery with cards
 5. `/projets/[slug]` — Dynamic project detail pages
-6. `/contact` — Contact form + social links
+6. `/certification` — Certifications
+7. `/contact` — Contact form + social links
 
 **Key Components**:
 - `Navbar.tsx` — Sticky header with nav + theme toggle + mobile menu
@@ -31,6 +32,7 @@ Professional portfolio website for Maël Lecomte - Full Stack Developer & System
 **Data Files** (in `/lib`):
 - `projects.ts` — Project definitions with slug, tech, features, challenge/solution/result
 - `experiences.ts` — Experience entries with period, company, technologies, highlights
+- `certifications.ts` — Certification entries displayed on `/certification`
 - `skills.ts` — Skill categories with items (no icons imported, use Lucide when rendering)
 
 ## Important Patterns
@@ -67,6 +69,7 @@ Professional portfolio website for Maël Lecomte - Full Stack Developer & System
 1. Add object to `projects` array in `lib/projects.ts` with:
    - `id` (unique string)
    - `slug` (URL-friendly string)
+   - `category` (`"course"` or `"personal"`; existing projects are marked `"personal"`)
    - `title, shortDesc, fullDesc`
    - `technologies` (array of strings)
    - `features` (bullet points array)
@@ -75,6 +78,10 @@ Professional portfolio website for Maël Lecomte - Full Stack Developer & System
    - `status` ("completed" or "in-progress")
 2. Automatically appears on `/projets` page
 3. Accessible at `/projets/[slug]`
+
+**Adding a Certification**
+1. Add an entry to `certifications` in `lib/certifications.ts` with its name, organization, date, and description.
+2. It automatically appears on `/certification`.
 
 ### Adding a New Experience
 1. Add object to `experiences` array in `lib/experiences.ts` with:
@@ -139,13 +146,6 @@ Add to main site's Navbar.tsx:
 </Link>
 ```
 
-Or if separate domain:
-```tsx
-<a href="https://portfolio-mael.vercel.app" target="_blank" rel="noopener noreferrer">
-  Portfolio
-</a>
-```
-
 ## Common Tasks
 
 **Change primary color**: Update gradient in Tailwind `from-blue-500 via-purple-500 to-pink-500` references throughout pages. Or modify `tailwind.config.ts` to create custom color variables.
@@ -171,4 +171,4 @@ Or if separate domain:
 
 ---
 
-**Made with Next.js 14 + TypeScript + Framer Motion**
+**Made with Next.js 16 + React 19 + TypeScript + Framer Motion**

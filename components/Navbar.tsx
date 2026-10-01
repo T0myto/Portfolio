@@ -4,26 +4,31 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
+
+const subscribeToMount = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 const navItems = [
   { label: "Accueil", href: "/" },
   { label: "Compétences", href: "/competences" },
   { label: "Expériences", href: "/experiences" },
   { label: "Projets", href: "/projets" },
+  { label: "Certification", href: "/certification" },
   { label: "Contact", href: "/contact" }
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribeToMount,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) return null;
 

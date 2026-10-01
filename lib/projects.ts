@@ -1,6 +1,7 @@
 export interface Project {
   id: string;
   slug: string;
+  category: "course" | "personal";
   title: string;
   shortDesc: string;
   fullDesc: string;
@@ -19,6 +20,7 @@ export const projects: Project[] = [
   {
     id: "1",
     slug: "facilock",
+    category: "personal",
     title: "FaciLock",
     shortDesc: "Réaliser une sérrure connecté via reconnaissance faciale",
     fullDesc:
@@ -49,6 +51,7 @@ export const projects: Project[] = [
   {
     id: "2",
     slug: "somfy-rts",
+    category: "personal",
     title: "Volets Domotiques",
     shortDesc: "Système domotique afin de controler et automatiser des volets",
     fullDesc:
@@ -79,6 +82,7 @@ export const projects: Project[] = [
   {
     id: "3",
     slug: "esp-div",
+    category: "personal",
     title: "ESP-DIV",
     shortDesc: "Module radio qui brouille les ondes bluetooth et wifi à proximité",
     fullDesc:
@@ -111,6 +115,7 @@ export const projects: Project[] = [
   {
     id: "4",
     slug: "home-lab",
+    category: "personal",
     title: "HomeLab",
     shortDesc: "Mise en place d'un HomeLab",
     fullDesc:
@@ -145,6 +150,7 @@ export const projects: Project[] = [
   {
     id: "5",
     slug: "app-tcgp",
+    category: "personal",
     title: "Application web",
     shortDesc: "Création d'une application web",
     fullDesc:

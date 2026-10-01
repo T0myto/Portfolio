@@ -1,18 +1,20 @@
 "use client";
 
+import { use } from "react";
 import { MotionFade } from "@/components/MotionFade";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 
 interface ProjectDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
+  const { slug } = use(params);
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return (

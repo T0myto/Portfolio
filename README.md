@@ -1,6 +1,6 @@
 # 🎯 Portfolio Tom Maudet
 
-Un portfolio professionnel premium construit avec **Next.js 14**, **TypeScript**, **TailwindCSS** et **Framer Motion**.
+Un portfolio professionnel premium construit avec **Next.js 16**, **React 19**, **TypeScript**, **TailwindCSS** et **Framer Motion**.
 
 ## ✨ Caractéristiques
 
@@ -25,6 +25,7 @@ portfolio/
 │   ├── projets/
 │   │   ├── page.tsx            # Liste des projets
 │   │   └── [slug]/page.tsx     # Détail projet dynamique
+│   ├── certification/page.tsx  # Certifications
 │   └── contact/page.tsx        # Contact
 ├── components/
 │   ├── Navbar.tsx              # Navigation
@@ -35,6 +36,7 @@ portfolio/
 ├── lib/
 │   ├── projects.ts             # Données projets
 │   ├── experiences.ts          # Données expériences
+│   ├── certifications.ts       # Données certifications
 │   └── skills.ts               # Données compétences
 ├── styles/
 │   └── globals.css             # Styles globaux
@@ -48,7 +50,7 @@ portfolio/
 ## 🚀 Installation et démarrage
 
 ### Prérequis
-- Node.js 18+
+- Node.js 20.9+
 - npm ou yarn
 - Docker 20.10+ (optionnel, pour le déploiement Docker)
 
@@ -143,6 +145,7 @@ docker run -p 3000:3000 portfolio-app
 | `/experiences` | Timeline des expériences |
 | `/projets` | Galerie des projets |
 | `/projets/[slug]` | Page détaillée d'un projet |
+| `/certification` | Certifications |
 | `/contact` | Formulaire et infos de contact |
 
 ## 🎨 Personnalisation
@@ -164,8 +167,8 @@ Le thème est géré par `next-themes`. Activer/désactiver le dark mode dans le
 
 ## 📦 Dépendances principales
 
-- **Next.js 14** — Framework React
-- **React 18** — Bibliothèque UI
+- **Next.js 16** — Framework React
+- **React 19** — Bibliothèque UI
 - **TailwindCSS** — Styling
 - **Framer Motion** — Animations
 - **lucide-react** — Icônes

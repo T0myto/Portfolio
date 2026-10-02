@@ -8,7 +8,7 @@ import {
   Braces,
   Code2,
   Database,
-  PanelsTopLeft,
+  PanelLeft,
   Server,
   ShieldCheck,
   Wrench,
@@ -29,7 +29,7 @@ const categoryStyles = [
     chip: "bg-violet-500/10 border-violet-500/20 group-hover:border-violet-500/40",
   },
   {
-    icon: PanelsTopLeft,
+    icon: PanelLeft,
     gradient: "from-cyan-500 to-blue-400",
     accent: "text-cyan-600 dark:text-cyan-400",
     chip: "bg-cyan-500/10 border-cyan-500/20 group-hover:border-cyan-500/40",

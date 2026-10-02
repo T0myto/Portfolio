@@ -22,8 +22,9 @@ portfolio/
 │   ├── page.tsx                # Accueil / À propos
 │   ├── competences/page.tsx    # Compétences
 │   ├── experiences/page.tsx    # Expériences
+│   ├── certifications/page.tsx # Certifications
 │   ├── projets/
-│   │   ├── page.tsx            # Liste des projets
+│   │   ├── page.tsx            # Projets professionnels et personnels
 │   │   └── [slug]/page.tsx     # Détail projet dynamique
 │   ├── certification/page.tsx  # Certifications
 │   └── contact/page.tsx        # Contact

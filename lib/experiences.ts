@@ -47,4 +47,16 @@ export const experiences: Experience[] = [
       "Maintenance électronique sur retour produits",
     ],
   },
+  {
+    id: "4",
+    title: "Technicien Informatique",
+    company: "Mairie de Vierzon",
+    period: "2026 (7 semaines)",
+    description: "Gestion du parc informatique de la mairie et maintenance des postes utilisateurs.",
+    technologies: ["Matériel réseaux", "Tests", "Configuration", "Bureautique"],
+    highlights: [
+      "Configuration de postes utilisateurs",
+      "Maintient du parc informatique et réseaux",
+    ],
+  },
 ];

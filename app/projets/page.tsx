@@ -11,13 +11,15 @@ export default function ProjetsPage() {
   const projectGroups = [
     {
       category: "course",
-      title: "Projets réalisés dans le cadre de mes cours",
-      description: "Des réalisations menées pendant mon parcours de formation.",
+      title: "Projets professionnels",
+      description: "Des projets réalisés dans le cadre de ma formation.",
+      placeholders: [1, 2, 3],
     },
     {
       category: "personal",
       title: "Projets personnels",
       description: "Des projets développés par curiosité et pour expérimenter.",
+      placeholders: [],
     },
   ] as const;
 
@@ -65,7 +67,6 @@ export default function ProjetsPage() {
                   {group.description}
                 </p>
               </div>
-
               <motion.div
                 className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
                 variants={containerVariants}
@@ -121,6 +122,22 @@ export default function ProjetsPage() {
                       </Link>
                     </motion.div>
                   ))}
+                {group.category === "course" &&
+                  projects.filter((project) => project.category === group.category).length === 0 &&
+                  group.placeholders.map((placeholder) => (
+                  <motion.div
+                    key={`school-placeholder-${placeholder}`}
+                    variants={itemVariants}
+                    className="min-h-48 p-6 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-2xl flex flex-col justify-center"
+                  >
+                    <h3 className="font-semibold text-neutral-700 dark:text-neutral-300">
+                      Projet d&apos;école à ajouter
+                    </h3>
+                    <p className="text-sm text-neutral-500 mt-2">
+                      Remplacez cet emplacement par un projet de formation.
+                    </p>
+                  </motion.div>
+                ))}
               </motion.div>
             </section>
           ))}

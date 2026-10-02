@@ -11,14 +11,15 @@ export default function ProjetsPage() {
   const projectGroups = [
     {
       category: "course",
-      title: "Projets professionnels",
+      title: "Projets de formation",
       description: "Des projets réalisés dans le cadre de ma formation.",
       placeholders: [1, 2, 3],
     },
     {
       category: "personal",
       title: "Projets personnels",
-      description: "Des projets développés par curiosité et pour expérimenter.",
+      description:
+        "Des projets personnels pour approfondir mes connaissances et mettre en pratique les notions abordées lors de mes certifications.",
       placeholders: [],
     },
   ] as const;
@@ -75,17 +76,30 @@ export default function ProjetsPage() {
               >
                 {projects
                   .filter((project) => project.category === group.category)
+                  .sort((a, b) =>
+                    a.status === b.status
+                      ? 0
+                      : a.status === "in-progress"
+                        ? -1
+                        : 1
+                  )
                   .map((project) => (
                     <motion.div
                       key={project.id}
                       variants={itemVariants}
-                      whileHover={{ y: -8 }}
+                      whileHover={{ y: -3 }}
                       className="group"
                     >
                       <Link href={`/projets/${project.slug}`}>
-                        <div className="h-full p-6 bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg cursor-pointer">
+                        <div className="h-full p-6 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md cursor-pointer">
                           <div className="flex items-start justify-between mb-4">
-                            <span className="inline-block px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">
+                            <span
+                              className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                                project.status === "completed"
+                                  ? "bg-green-500/10 text-green-700 dark:text-green-400"
+                                  : "bg-blue-500/10 text-blue-700 dark:text-blue-400"
+                              }`}
+                            >
                               {project.status === "completed"
                                 ? "Complété"
                                 : "En cours"}
@@ -103,7 +117,7 @@ export default function ProjetsPage() {
                             {project.technologies.slice(0, 3).map((tech) => (
                               <span
                                 key={tech}
-                                className="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded text-xs font-medium"
+                                className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded text-xs font-medium"
                               >
                                 {tech}
                               </span>
@@ -151,7 +165,7 @@ export default function ProjetsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all"
+              className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Me contacter
             </Link>

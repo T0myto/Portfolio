@@ -29,10 +29,10 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Animated background elements */}
+        {/* Subtle background accent */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
-            className="absolute w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
+            className="absolute w-96 h-96 bg-blue-500/[0.06] rounded-full blur-3xl"
             animate={{
               x: [0, 50, -50, 0],
               y: [0, 30, -30, 0]
@@ -41,7 +41,7 @@ export default function Home() {
             style={{ left: "-10%", top: "-10%" }}
           />
           <motion.div
-            className="absolute w-96 h-96 bg-gradient-to-r from-pink-500/20 to-blue-500/20 rounded-full blur-3xl"
+            className="absolute w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl"
             animate={{
               x: [0, -50, 50, 0],
               y: [0, -30, 30, 0]
@@ -54,15 +54,15 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
             <motion.div variants={itemVariants} className="mb-6 inline-block">
-              <div className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center gap-2">
-                <Sparkles size={16} className="text-blue-400" />
-                <p className="text-sm text-blue-400">Bienvenue sur mon portfolio</p>
+              <div className="px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex items-center gap-2">
+                <Sparkles size={16} className="text-blue-500" />
+                <p className="text-sm text-neutral-600 dark:text-neutral-300">Bienvenue sur mon portfolio</p>
               </div>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              className="text-5xl md:text-7xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
               Tom Maudet
             </motion.h1>
 
@@ -81,8 +81,8 @@ export default function Home() {
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/projets">
                 <motion.button
-                  className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold flex items-center gap-2 hover:shadow-lg w-full sm:w-auto justify-center"
-                  whileHover={{ scale: 1.05 }}
+                  className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 w-full sm:w-auto justify-center transition-colors"
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}>
                   Voir mes projets
                   <ArrowRight size={20} />
@@ -91,7 +91,7 @@ export default function Home() {
               <Link href="/contact">
                 <motion.button
                   className="px-8 py-4 border-2 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-lg font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors w-full sm:w-auto"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}>
                   Me contacter
                 </motion.button>

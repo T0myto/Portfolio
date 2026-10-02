@@ -41,9 +41,7 @@ export function Navbar() {
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="font-bold text-xl">
-          <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Tom
-          </span>
+          <span className="text-blue-600 dark:text-blue-400">Tom</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -61,7 +59,7 @@ export function Navbar() {
                 {pathname === item.href && (
                   <motion.div
                     layoutId="navbar-underline"
-                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                    className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-500 rounded-full"
                     transition={{ duration: 0.3 }}
                   />
                 )}

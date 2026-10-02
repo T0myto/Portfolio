@@ -12,18 +12,16 @@ export default function ContactPage() {
       description: "Consultez mes projets open source et contributions",
       icon: Github,
       href: "https://github.com/T0myto",
-      color: "from-gray-700 to-gray-900",
-      bgColor: "bg-gray-500/10",
-      borderColor: "border-gray-500/30"
+      bgColor: "bg-white dark:bg-neutral-900",
+      borderColor: "border-neutral-200 dark:border-neutral-800"
     },
     {
       name: "LinkedIn",
       description: "Connectez-vous avec moi professionnellement",
       icon: Linkedin,
       href: "https://www.linkedin.com/in/tom-maudet-244aa7336/",
-      color: "from-blue-600 to-blue-700",
-      bgColor: "bg-blue-600/10",
-      borderColor: "border-blue-600/30"
+      bgColor: "bg-white dark:bg-neutral-900",
+      borderColor: "border-neutral-200 dark:border-neutral-800"
     }
   ];
 
@@ -55,9 +53,9 @@ export default function ContactPage() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className={`p-8 rounded-2xl border transition-all group cursor-pointer h-full flex flex-col ${social.bgColor} ${social.borderColor} hover:border-opacity-100 dark:hover:border-opacity-100`}>
-                  <div className={`p-4 rounded-lg bg-gradient-to-br ${social.color} text-white w-fit mb-4`}>
+                  whileHover={{ y: -3 }}
+                  className={`p-8 rounded-2xl border transition-all group cursor-pointer h-full flex flex-col hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-md ${social.bgColor} ${social.borderColor}`}>
+                  <div className="p-4 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 w-fit mb-4">
                     <Icon size={32} />
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-neutral-900 dark:text-white">{social.name}</h3>

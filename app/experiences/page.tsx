@@ -18,8 +18,8 @@ export default function ExperiencesPage() {
           {experiences.map((exp, idx) => (
             <MotionFade key={exp.id} delay={idx * 0.15} direction="up">
               <motion.div
-                className="p-8 bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-lg"
-                whileHover={{ y: -8 }}
+                className="p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md"
+                whileHover={{ y: -3 }}
               >
                 <div className="space-y-6">
                   {/* Header */}
@@ -66,7 +66,7 @@ export default function ExperiencesPage() {
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium border border-blue-500/20"
+                        className="px-3 py-1 bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300 rounded-full text-xs font-medium border border-neutral-200 dark:border-neutral-700"
                       >
                         {tech}
                       </span>
@@ -93,7 +93,7 @@ export default function ExperiencesPage() {
                 <div className="space-y-1">
                   <p className="font-semibold text-blue-500">{exp.period}</p>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {exp.title} @ {exp.company}
+                    {exp.title} — {exp.company}
                   </p>
                 </div>
               </div>

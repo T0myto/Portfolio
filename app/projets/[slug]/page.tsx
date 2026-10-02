@@ -48,7 +48,13 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         {/* Project Header */}
         <MotionFade delay={0.1}>
           <div className="mb-12 space-y-4">
-            <span className="inline-block px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">
+            <span
+              className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                project.status === "completed"
+                  ? "bg-green-500/10 text-green-700 dark:text-green-400"
+                  : "bg-blue-500/10 text-blue-700 dark:text-blue-400"
+              }`}
+            >
               {project.status === "completed" ? "Complété" : "En cours"}
             </span>
             <h1 className="text-5xl font-bold">{project.title}</h1>
@@ -66,7 +72,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium border border-blue-500/20"
+                  className="px-3 py-1 bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 rounded-full text-sm font-medium border border-neutral-200 dark:border-neutral-700"
                 >
                   {tech}
                 </span>
@@ -107,29 +113,29 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
           {/* Challenge & Solution */}
           <MotionFade delay={0.4} direction="right">
             <div className="space-y-6">
-              <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
-                <h3 className="font-bold mb-3 text-blue-900 dark:text-blue-100">
+              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
+              <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
                   Défi
                 </h3>
-                <p className="text-blue-800 dark:text-blue-200 text-sm">
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                   {project.challenge}
                 </p>
               </div>
 
-              <div className="p-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
-                <h3 className="font-bold mb-3 text-purple-900 dark:text-purple-100">
+              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
+                <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
                   Solution
                 </h3>
-                <p className="text-purple-800 dark:text-purple-200 text-sm">
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                   {project.solution}
                 </p>
               </div>
 
-              <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
-                <h3 className="font-bold mb-3 text-green-900 dark:text-green-100">
+              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
+                <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
                   Résultat
                 </h3>
-                <p className="text-green-800 dark:text-green-200 text-sm">
+                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                   {project.result}
                 </p>
               </div>
@@ -156,7 +162,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-600 transition-colors"
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 transition-colors"
                 >
                   <ExternalLink size={20} /> Voir la démo
                 </a>
@@ -175,7 +181,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 .slice(0, 2)
                 .map((p) => (
                   <Link key={p.id} href={`/projets/${p.slug}`}>
-                    <div className="p-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-blue-500 transition-all hover:shadow-lg cursor-pointer">
+                    <div className="p-6 bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md cursor-pointer">
                       <h4 className="font-bold mb-2">{p.title}</h4>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">
                         {p.shortDesc}

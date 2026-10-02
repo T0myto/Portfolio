@@ -6,27 +6,43 @@ export interface Skill {
 
 export const skills: Skill[] = [
   {
-    category: "Langages de Programmation",
-    items: ["HTML", "CSS", "JavaScript", "TypeScript", "Bash", "SQL", "C++", "C#"]
+    category: "Administration réseaux",
+    items: ["TCP/IP", "VLAN", "Routage", "DHCP", "DNS", "NAT", "Cisco", "Aruba", "Ruckus", "Ubiquiti"]
   },
   {
-    category: "Systèmes & Infrastructure",
-    items: ["Debian / Arch Linux", "Windows Server", "Proxmox", "Docker", "RAID", "SSH"]
+    category: "Administration systèmes",
+    items: ["Windows Server", "Active Directory", "Linux / Debian", "Services réseau", "SSH"]
   },
   {
-    category: "Frontend",
-    items: ["React", "CSS", "Bootstrap", "Tailwind", "TypeScript"]
+    category: "Virtualisation & infrastructure",
+    items: ["Proxmox", "VirtualBox", "Machines virtuelles", "Stockage", "RAID", "Architecture serveur"]
   },
   {
-    category: "Backend",
-    items: ["Node.js", "NestJS"]
+    category: "Conteneurisation & services",
+    items: ["Docker", "CasaOS", "Déploiement de services", "Administration de services"]
   },
   {
-    category: "Outils & DevOps",
-    items: ["Git", "GitHub", "VSCode", "Docker Compose", "Linux CLI", "Bash Scripts"]
+    category: "Sécurité réseau",
+    items: ["Segmentation VLAN", "Pi-hole", "Tailscale", "Accès distant sécurisé"]
   },
   {
-    category: "Cybersécurité",
-    items: ["TCP/IP", "SSL/TLS", "Firewall", "SSH Keys", "Monitoring"]
+    category: "Supervision & automatisation",
+    items: ["Grafana", "Node-RED", "PowerShell", "Bash", "cron"]
+  },
+  {
+    category: "IoT & domotique",
+    items: ["Home Assistant", "ESP32", "Capteurs", "I²C", "Automatisations"]
+  },
+  {
+    category: "Développement web",
+    items: ["HTML / CSS", "JavaScript / TypeScript", "Next.js", "Laravel", "MySQL", "Git"]
+  },
+  {
+    category: "Maintenance informatique",
+    items: ["Assemblage PC", "Diagnostic matériel", "Dépannage", "Mesure électronique"]
+  },
+  {
+    category: "Documentation & diagnostic",
+    items: ["Analyse de problèmes", "Tests", "Mise en place", "Documentation d'infrastructures"]
   }
 ];

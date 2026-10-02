@@ -4,6 +4,16 @@ import { certifications } from "@/lib/certifications";
 import { ArrowUpRight, Award, FileText } from "lucide-react";
 
 export default function CertificationPage() {
+  const hasDatedDocument = (certification: (typeof certifications)[number]) =>
+    Boolean(
+      certification.documentUrl &&
+        certification.date !== "Date à préciser" &&
+        certification.date !== "AAAA"
+    );
+  const orderedCertifications = [...certifications].sort(
+    (a, b) => Number(hasDatedDocument(b)) - Number(hasDatedDocument(a))
+  );
+
   return (
     <div className="min-h-screen pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -13,7 +23,7 @@ export default function CertificationPage() {
         />
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {certifications.map((certification, index) => (
+          {orderedCertifications.map((certification, index) => (
             <MotionFade key={certification.id} delay={index * 0.15}>
               <article className="h-full p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md">
                 <div className="flex items-start justify-between gap-4 mb-6">

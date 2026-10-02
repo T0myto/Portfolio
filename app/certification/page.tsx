@@ -1,7 +1,7 @@
 import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { certifications } from "@/lib/certifications";
-import { Award } from "lucide-react";
+import { ArrowUpRight, Award, FileText } from "lucide-react";
 
 export default function CertificationPage() {
   return (
@@ -9,7 +9,7 @@ export default function CertificationPage() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           title="Mes certifications"
-          subtitle="Exemples à remplacer par vos certifications et compétences validées."
+          subtitle="Certifications et cours en ligne que j'ai obtenus pour valider mes compétences et connaissances dans le domaine de l'informatique et du développement web."
         />
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -20,9 +20,6 @@ export default function CertificationPage() {
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
                     <Award size={24} />
                   </div>
-                  <span className="px-3 py-1 bg-amber-500/10 text-amber-700 dark:text-amber-400 rounded-full text-xs font-medium">
-                    Exemple à remplacer
-                  </span>
                 </div>
 
                 <h2 className="text-xl font-bold mb-2">{certification.name}</h2>
@@ -36,6 +33,18 @@ export default function CertificationPage() {
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
                   {certification.description}
                 </p>
+                {certification.documentUrl && (
+                  <a
+                    href={certification.documentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-2.5 text-sm font-semibold text-blue-600 transition-colors hover:border-blue-500/40 hover:bg-blue-500/10 dark:text-blue-400"
+                  >
+                    <FileText size={17} />
+                    Consulter le justificatif
+                    <ArrowUpRight size={15} />
+                  </a>
+                )}
               </article>
             </MotionFade>
           ))}

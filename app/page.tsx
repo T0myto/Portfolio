@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Network, Server, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 const containerVariants = {
@@ -25,8 +25,26 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const focusAreas = [
+    {
+      icon: Network,
+      title: "Réseaux",
+      description: "Conception, configuration et dépannage d’infrastructures réseau.",
+    },
+    {
+      icon: Server,
+      title: "Systèmes",
+      description: "Installation et administration de serveurs Windows et Linux.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Infrastructure",
+      description: "Virtualisation, services et sécurisation des environnements.",
+    },
+  ];
+
   return (
-    <main className="min-h-screen">
+    <div>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Subtle background accent */}
@@ -75,7 +93,7 @@ export default function Home() {
             <motion.p
               variants={itemVariants}
               className="text-lg text-neutral-500 dark:text-neutral-500 mb-12 max-w-2xl mx-auto leading-relaxed">
-              J&apos;administre / installe / configure des infrastructures réseau et serveur.
+              Je conçois, déploie et administre des infrastructures systèmes et réseaux, avec une attention particulière portée à leur fiabilité et à leur sécurité.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -121,6 +139,58 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-    </main>
+
+      <section className="border-t border-neutral-200 bg-neutral-50 py-20 dark:border-neutral-800 dark:bg-neutral-900/30">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+              Mon domaine
+            </p>
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50 sm:text-4xl">
+              Des bases solides pour des infrastructures fiables
+            </h2>
+            <p className="mt-4 leading-relaxed text-neutral-600 dark:text-neutral-400">
+              De l’administration quotidienne à la mise en place de services, je m’intéresse à chaque étape qui rend un environnement informatique stable, pratique et sécurisé.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {focusAreas.map((area, index) => {
+              const Icon = area.icon;
+              return (
+                <motion.article
+                  key={area.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 14 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.6,
+                        delay: index * 0.08,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    },
+                  }}
+                  whileHover={{ y: -3 }}
+                  className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900"
+                >
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    <Icon size={21} />
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold">{area.title}</h3>
+                  <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+                    {area.description}
+                  </p>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

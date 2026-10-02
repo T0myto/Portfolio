@@ -53,7 +53,8 @@ export default function ContactPage() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3 }}
+                  whileHover={{ y: -3, scale: 1.005 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 28 }}
                   className={`p-8 rounded-2xl border transition-all group cursor-pointer h-full flex flex-col hover:border-neutral-300 dark:hover:border-neutral-700 hover:shadow-md ${social.bgColor} ${social.borderColor}`}>
                   <div className="p-4 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 w-fit mb-4">
                     <Icon size={32} />

@@ -25,7 +25,7 @@ export default function CertificationPage() {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {orderedCertifications.map((certification, index) => (
             <MotionFade key={certification.id} delay={index * 0.15}>
-              <article className="h-full p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md">
+              <article className="h-full p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-neutral-300 hover:shadow-md dark:hover:border-neutral-700 motion-reduce:transform-none motion-reduce:transition-none">
                 <div className="flex items-start justify-between gap-4 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
                     <Award size={24} />

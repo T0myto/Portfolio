@@ -17,9 +17,9 @@ export function MotionFade({
   duration = 0.6,
 }: MotionFadeProps) {
   const directions = {
-    up: { y: 30, x: 0 },
-    left: { y: 0, x: 30 },
-    right: { y: 0, x: -30 },
+    up: { y: 16, x: 0 },
+    left: { y: 0, x: 16 },
+    right: { y: 0, x: -16 },
     none: { y: 0, x: 0 },
   };
 
@@ -37,9 +37,9 @@ export function MotionFade({
       transition={{
         duration,
         delay,
-        ease: "easeOut",
+        ease: [0.22, 1, 0.36, 1],
       }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.15 }}
     >
       {children}
     </motion.div>

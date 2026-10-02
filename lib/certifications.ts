@@ -19,7 +19,7 @@ export const certifications: Certification[] = [
   {
     id: "certification-docker",
     name: "Certification Docker",
-    organization: "Organisme à préciser",
+    organization: "Docker Foundations Course",
     date: "7 avril 2026",
     description: "Cours sur la création et l'administration d'applications conteneurisées avec Docker.",
     documentUrl: "/certifications/certification-docker.pdf",
@@ -41,9 +41,9 @@ export const certifications: Certification[] = [
   },
   {
     id: "certification-cybersecurite",
-    name: "Certification Zabbix",
+    name: "Certification Zabbix (prévue)",
     organization: "Zabbix",
-    date: "Date à préciser",
-    description: "Cours de supervision pour suivre l'état des systèmes, services et équipements avec Zabbix.",
+    date: "Prévue en 2026",
+    description: "Certification de supervision prévue en 2026 pour approfondir le suivi des systèmes, services et équipements avec Zabbix.",
   },
 ];

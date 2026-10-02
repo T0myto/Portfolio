@@ -19,7 +19,8 @@ export default function ExperiencesPage() {
             <MotionFade key={exp.id} delay={idx * 0.15} direction="up">
               <motion.div
                 className="p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md"
-                whileHover={{ y: -3 }}
+                whileHover={{ y: -3, scale: 1.005 }}
+                transition={{ type: "spring", stiffness: 320, damping: 28 }}
               >
                 <div className="space-y-6">
                   {/* Header */}

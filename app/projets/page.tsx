@@ -12,7 +12,7 @@ export default function ProjetsPage() {
     {
       category: "course",
       title: "Projets de formation",
-      description: "Des projets réalisés dans le cadre de ma formation.",
+      description: "Des projets réalisés dans le cadre de mes formations.",
       placeholders: [1, 2, 3],
     },
     {
@@ -29,17 +29,17 @@ export default function ProjetsPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 14 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -48,7 +48,7 @@ export default function ProjetsPage() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           title="Mes projets"
-          subtitle="Des solutions concrètes, de l'infra à l'administration système"
+          subtitle="Des projets autour des réseaux, de l’infrastructure, du développement et de l’ingénierie électronique."
         />
 
         <div className="space-y-16">
@@ -87,7 +87,8 @@ export default function ProjetsPage() {
                     <motion.div
                       key={project.id}
                       variants={itemVariants}
-                      whileHover={{ y: -3 }}
+                      whileHover={{ y: -3, scale: 1.005 }}
+                      transition={{ type: "spring", stiffness: 320, damping: 28 }}
                       className="group"
                     >
                       <Link href={`/projets/${project.slug}`}>

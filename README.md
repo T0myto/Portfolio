@@ -136,9 +136,9 @@ Le site est alors accessible à l’adresse [http://localhost:3000](http://local
 
 ## 🌍 Publication gratuite
 
-Le site peut être publié gratuitement avec **GitHub Pages**. À chaque push sur la branche `main`, GitHub Actions génère le site statique et le publie à l’adresse [https://t0myto.github.io/Portfolio/](https://t0myto.github.io/Portfolio/).
+Le site est hébergé gratuitement avec **GitHub Pages** et accessible à l’adresse [https://portfolio.tom-maudet.fr](https://portfolio.tom-maudet.fr). La zone DNS de ce domaine est gérée chez **Cloudflare** ; Cloudflare dirige le domaine vers GitHub Pages, qui sert le site.
 
-Pour activer la publication la première fois, ouvrez **Settings → Pages** dans le dépôt GitHub, puis sélectionnez **GitHub Actions** comme source de déploiement. Les prochaines mises à jour seront publiées automatiquement après un push.
+À chaque push sur la branche `main`, GitHub Actions génère le site statique et le publie sur GitHub Pages. La configuration du domaine personnalisé se fait dans **Settings → Pages** dans le dépôt GitHub, tandis que ses enregistrements DNS se gèrent dans le tableau de bord Cloudflare. La publication reste automatique après chaque push.
 
 Les pages de projets sont générées à partir de `lib/projects.ts` pendant le build. Le site publié est statique : pour rendre un changement de contenu visible, il faut donc le pousser sur la branche `main`.
 

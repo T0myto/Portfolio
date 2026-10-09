@@ -4,7 +4,7 @@ import { use } from "react";
 import { MotionFade } from "@/components/MotionFade";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github, ExternalLink } from "lucide-react";
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -139,6 +139,20 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   {project.result}
                 </p>
               </div>
+              {project.slug === "facilock" && (
+                <div className="flex justify-end pt-1">
+                  <a
+                    href="https://github.com/constantseg/FaciLock"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30"
+                  >
+                    <Github size={18} />
+                    Voir le dépôt GitHub
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              )}
             </div>
           </MotionFade>
         </div>

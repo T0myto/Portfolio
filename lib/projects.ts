@@ -259,36 +259,6 @@ export const projects: Project[] = [
     status: "in-progress",
   },
   {
-    id: "9",
-    slug: "hebergement-portfolio-cloudflare",
-    category: "personal",
-    title: "Hébergement du portfolio sur Homelab",
-    shortDesc:
-      "Publication de ce portfolio depuis mon Homelab, via Cloudflare Tunnel et le domaine tom-maudet.fr.",
-    fullDesc:
-      "Déploiement du portfolio Next.js sur une infrastructure Homelab personnelle et publication du service sur Internet à l'aide de Cloudflare Tunnel. Le domaine tom-maudet.fr fournit une adresse personnalisée pour accéder au site.",
-    technologies: [
-      "Next.js",
-      "Homelab",
-      "Cloudflare Tunnel",
-      "Nom de domaine",
-      "tom-maudet.fr",
-    ],
-    features: [
-      "Hébergement du portfolio Next.js sur l'infrastructure Homelab personnelle.",
-      "Publication de l'application sur Internet via Cloudflare Tunnel.",
-      "Accès au portfolio avec le nom de domaine tom-maudet.fr.",
-      "Mise en pratique de l'hébergement et de l'exposition d'un service web personnel.",
-    ],
-    challenge:
-      "Rendre le portfolio accessible publiquement depuis une infrastructure hébergée à domicile, avec une adresse web personnalisée.",
-    solution:
-      "Héberger le site Next.js sur le Homelab et utiliser Cloudflare Tunnel pour le relier au domaine tom-maudet.fr.",
-    result:
-      "Le portfolio est accessible sur Internet depuis tom-maudet.fr et s'appuie sur l'infrastructure personnelle du Homelab.",
-    status: "completed",
-  },
-  {
     id: "10",
     slug: "surveillance-temperature-humidite-filaments",
     category: "personal",

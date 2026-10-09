@@ -1,207 +1,62 @@
-# 🎯 Portfolio Tom Maudet
+# Portfolio de Tom Maudet
 
-Un portfolio professionnel premium construit avec **Next.js 16**, **React 19**, **TypeScript**, **TailwindCSS** et **Framer Motion**.
+Ce site présente mon parcours et les projets que je réalise autour des systèmes, des réseaux et de l'informatique. On y retrouve mes compétences, mes expériences, mes certifications et des fiches détaillées de projets de formation et personnels.
 
-## ✨ Caractéristiques
+Le portfolio est développé avec Next.js et React en TypeScript. L'interface s'adapte aux mobiles et aux ordinateurs, propose un thème clair ou sombre et utilise Framer Motion pour quelques animations.
 
-- ✅ **Design moderne et fluide** — Inspiré par Apple, Linear, Vercel
-- ✅ **Animations Framer Motion** — Transitions douces et élégantes
-- ✅ **Dark Mode** — Toggle thème clair/sombre
-- ✅ **Responsive** — Mobile-first design
-- ✅ **Performance** — Optimisé pour lighthouse
-- ✅ **TypeScript** — Typage complet
-- ✅ **SEO Ready** — Métadonnées et structure sémantique
-- ✅ **Docker Ready** — Configuration Docker complète pour développement et production
+## Pages
 
-## 📁 Structure du projet
+- **Accueil** (`/`) : présentation et domaines qui m'intéressent.
+- **Compétences** (`/competences`) : compétences regroupées par catégorie.
+- **Expériences** (`/experiences`) : stages et missions, avec les activités réalisées.
+- **Projets** (`/projets`) : projets de formation et projets personnels. Chaque projet possède une page de détail.
+- **Certifications** (`/certification`) : cours et certifications, avec un lien vers le justificatif lorsqu'il est disponible.
+- **Contact** (`/contact`) : liens vers mon GitHub et mon LinkedIn.
 
-```
-portfolio/
-├── app/
-│   ├── layout.tsx              # Layout racine
-│   ├── page.tsx                # Accueil / À propos
-│   ├── competences/page.tsx    # Compétences
-│   ├── experiences/page.tsx    # Expériences
-│   ├── certifications/page.tsx # Certifications
-│   ├── projets/
-│   │   ├── page.tsx            # Projets professionnels et personnels
-│   │   └── [slug]/page.tsx     # Détail projet dynamique
-│   ├── certification/page.tsx  # Certifications
-│   └── contact/page.tsx        # Contact
-├── components/
-│   ├── Navbar.tsx              # Navigation
-│   ├── Footer.tsx              # Footer
-│   ├── MotionFade.tsx          # Composant animation
-│   ├── SectionTitle.tsx        # Titre section
-│   └── Providers.tsx           # Providers (thème, etc.)
-├── lib/
-│   ├── projects.ts             # Données projets
-│   ├── experiences.ts          # Données expériences
-│   ├── certifications.ts       # Données certifications
-│   └── skills.ts               # Données compétences
-├── styles/
-│   └── globals.css             # Styles globaux
-├── Dockerfile                  # Configuration Docker production
-├── Dockerfile.dev              # Configuration Docker développement
-├── docker-compose.yml          # Compose production
-├── docker-compose.dev.yml      # Compose développement
-└── package.json
-```
+Les projets présentés couvrent notamment l'administration système et réseau, la virtualisation, la domotique, l'IoT et le développement. Parmi eux : une infrastructure Windows Server et Debian, un réseau interservices Cisco, le prototype de serrure connectée FaciLock et mon HomeLab.
 
-## 🚀 Installation et démarrage
+## Technologies
 
-### Prérequis
-- Node.js 20.9+
-- npm ou yarn
-- Docker 20.10+ (optionnel, pour le déploiement Docker)
+- Next.js 16 et React 19
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- next-themes pour le thème clair/sombre
+- Lucide pour les icônes
 
-### Installation
+Les pages utilisent l'App Router de Next.js. Les données du portfolio sont définies dans le projet : aucun service ou base de données externe n'est nécessaire pour afficher les contenus.
+
+## Lancer le projet en local
+
+Il faut disposer de Node.js 20.9 ou d'une version ultérieure, ainsi que de npm.
 
 ```bash
-cd portfolio
-npm install
-# ou
-yarn install
-```
-
-### Développement
-
-```bash
+npm ci
 npm run dev
-# ou
-yarn dev
 ```
 
-Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
+Le site est ensuite accessible à l'adresse [http://localhost:3000](http://localhost:3000).
 
-### Build production
+Commandes utiles :
 
 ```bash
-npm run build
-npm start
+npm run lint    # Vérifier le code avec ESLint
+npm run build   # Compiler le projet et vérifier les types TypeScript
+npm start       # Lancer le serveur après une compilation
 ```
 
-## 🐳 Docker
+## Où modifier le contenu
 
-Le projet est maintenant prêt pour Docker avec des configurations optimisées pour le développement et la production.
+Les informations affichées sur le site sont regroupées dans le dossier `lib/` :
 
-### Prérequis Docker
-- Docker 20.10+
-- Docker Compose 2.0+
+- `projects.ts` : projets, technologies, fonctionnalités et liens éventuels vers leur dépôt ou leur démo.
+- `experiences.ts` : expériences, périodes, technologies et missions réalisées.
+- `certifications.ts` : certifications, organismes, dates et justificatifs disponibles.
+- `skills.ts` : catégories et éléments de compétences.
 
-### Développement avec Docker
+Les pages se trouvent dans `app/`, et les éléments d'interface partagés (navigation, pied de page et animations) dans `components/`.
 
-```bash
-# Démarrer en mode développement avec hot-reload
-docker-compose -f docker-compose.dev.yml up
+## Me retrouver
 
-# Ou construire et démarrer
-docker-compose -f docker-compose.dev.yml up --build
-```
-
-L'application sera disponible sur [http://localhost:3000](http://localhost:3000)
-
-### Production avec Docker
-
-```bash
-# Construire et démarrer l'image de production
-docker-compose up --build
-
-# Ou en arrière-plan
-docker-compose up -d --build
-```
-
-### Commandes Docker utiles
-
-```bash
-# Arrêter les conteneurs
-docker-compose down
-
-# Voir les logs
-docker-compose logs -f
-
-# Reconstruire sans cache
-docker-compose build --no-cache
-
-# Mode développement
-docker-compose -f docker-compose.dev.yml down
-```
-
-### Build Docker manuel
-
-```bash
-# Construire l'image
-docker build -t portfolio-app .
-
-# Lancer le conteneur
-docker run -p 3000:3000 portfolio-app
-```
-
-## 📄 Pages disponibles
-
-| Route | Description |
-|-------|-------------|
-| `/` | Accueil avec présentation personnelle |
-| `/competences` | Grille de compétences avec filtres |
-| `/experiences` | Timeline des expériences |
-| `/projets` | Galerie des projets |
-| `/projets/[slug]` | Page détaillée d'un projet |
-| `/certification` | Certifications |
-| `/contact` | Formulaire et infos de contact |
-
-## 🎨 Personnalisation
-
-### Couleurs
-
-Modifier les variables TailwindCSS dans `tailwind.config.ts`.
-
-### Contenu
-
-Les données (projets, expériences, compétences) sont stockées dans `/lib`:
-- `projects.ts` — Ajouter/modifier les projets
-- `experiences.ts` — Ajouter/modifier les expériences
-- `skills.ts` — Ajouter/modifier les compétences
-
-### Thème
-
-Le thème est géré par `next-themes`. Activer/désactiver le dark mode dans le header.
-
-## 📦 Dépendances principales
-
-- **Next.js 16** — Framework React
-- **React 19** — Bibliothèque UI
-- **TailwindCSS** — Styling
-- **Framer Motion** — Animations
-- **lucide-react** — Icônes
-- **next-themes** — Gestion du thème
-
-## 🌐 Déploiement
-
-### Vercel (recommandé)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-### Netlify
-
-1. Push sur GitHub
-2. Connecter le repo à Netlify
-3. Déploiement automatique
-
-### Autre hébergeur
-
-```bash
-npm run build
-# Copier le dossier `.next` et `public` sur le serveur
-npm start
-```
-
-## 📧 Contact
-
-Pour des questions ou modifications du portfolio, contactez [contact@example.com](mailto:contact@example.com).
-
----
-
-**Made with ❤️ in 2025**
+- [GitHub](https://github.com/T0myto)
+- [LinkedIn](https://www.linkedin.com/in/tom-maudet-244aa7336/)

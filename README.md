@@ -77,6 +77,9 @@ Le site utilise l’App Router de Next.js. Les contenus sont stockés dans des f
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml        # Publication automatique sur GitHub Pages
 ├── app/                            # Pages et routes Next.js
 │   ├── page.tsx                    # Accueil
 │   ├── layout.tsx                  # Mise en page commune et métadonnées
@@ -106,6 +109,7 @@ Le site utilise l’App Router de Next.js. Les contenus sont stockés dans des f
 │   ├── certifications.ts           # Certifications et justificatifs
 │   └── skills.ts                   # Catégories de compétences
 ├── public/
+│   ├── favicon.svg
 │   ├── certifications/             # Justificatifs PDF
 │   ├── robots.txt
 │   └── sitemap.xml
@@ -130,12 +134,19 @@ npm run dev
 
 Le site est alors accessible à l’adresse [http://localhost:3000](http://localhost:3000).
 
+## 🌍 Publication gratuite
+
+Le site peut être publié gratuitement avec **GitHub Pages**. À chaque push sur la branche `main`, GitHub Actions génère le site statique et le publie à l’adresse [https://t0myto.github.io/Portfolio/](https://t0myto.github.io/Portfolio/).
+
+Pour activer la publication la première fois, ouvrez **Settings → Pages** dans le dépôt GitHub, puis sélectionnez **GitHub Actions** comme source de déploiement. Les prochaines mises à jour seront publiées automatiquement après un push.
+
+Les pages de projets sont générées à partir de `lib/projects.ts` pendant le build. Le site publié est statique : pour rendre un changement de contenu visible, il faut donc le pousser sur la branche `main`.
+
 | Commande | Utilité |
 |:--|:--|
 | `npm run dev` | Démarrer le serveur de développement |
 | `npm run lint` | Vérifier le code avec ESLint |
 | `npm run build` | Compiler le projet et vérifier les types |
-| `npm start` | Lancer le serveur après compilation |
 
 ## ✏️ Mettre à jour le contenu
 

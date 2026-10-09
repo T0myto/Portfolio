@@ -1,7 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /_next/
-Crawl-delay: 1
 
-Sitemap: https://maellecomte.com/sitemap.xml
+Sitemap: https://t0myto.github.io/Portfolio/sitemap.xml

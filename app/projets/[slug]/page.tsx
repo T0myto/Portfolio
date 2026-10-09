@@ -1,6 +1,3 @@
-"use client";
-
-import { use } from "react";
 import { MotionFade } from "@/components/MotionFade";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
@@ -12,8 +9,16 @@ interface ProjectDetailPageProps {
   }>;
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const { slug } = use(params);
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return projects.map(({ slug }) => ({ slug }));
+}
+
+export default async function ProjectDetailPage({
+  params,
+}: ProjectDetailPageProps) {
+  const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {

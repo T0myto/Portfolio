@@ -7,7 +7,7 @@ export const metadata = {
   title: "Tom Maudet — Administrateur Systèmes & Réseau",
   description: "Portfolio professionnel - Administrateur Système & Réseau | Infra & Cybersécurité",
   icons: {
-    icon: "/favicon.ico",
+    icon: `${process.env.PAGES_BASE_PATH ?? ""}/favicon.svg`,
   },
 };
 

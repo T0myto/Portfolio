@@ -5,16 +5,27 @@ export interface Certification {
   date: string;
   description: string;
   documentUrl?: string;
+  badgeUrl?: string;
 }
 
 export const certifications: Certification[] = [
   {
     id: "certification-reseau",
-    name: "Certification Cisco",
+    name: "Network Addressing and Basic Troubleshooting",
     organization: "Cisco Networking Academy",
     date: "11 février 2026",
-    description: "Cours de réseau consacré à la configuration des équipements Cisco et au dépannage.",
+    description: "Cours consacré à l’adressage réseau et au dépannage de base.",
     documentUrl: "/certifications/certification-cisco.pdf",
+    badgeUrl: "/certifications/badge-cisco-reseau.png",
+  },
+  {
+    id: "certification-cybersecurite",
+    name: "Introduction to Cybersecurity",
+    organization: "Cisco Networking Academy",
+    date: "20 octobre 2026",
+    description: "Cours d’introduction à la cybersécurité suivi dans le cadre du programme Cisco Networking Academy.",
+    documentUrl: "/certifications/certification-cybersecurite.pdf",
+    badgeUrl: "/certifications/badge-cisco-cybersecurite.png",
   },
   {
     id: "certification-docker",
@@ -40,10 +51,17 @@ export const certifications: Certification[] = [
     description: "Cours sur la création de tableaux de bord et la visualisation des données de supervision.",
   },
   {
-    id: "certification-cybersecurite",
-    name: "Certification Zabbix (prévue)",
+    id: "certification-ccna",
+    name: "Certification CCNA",
+    organization: "Cisco Networking Academy",
+    date: "À venir",
+    description: "Certification Cisco Certified Network Associate (CCNA) prévue.",
+  },
+  {
+    id: "certification-zabbix",
+    name: "Certification Zabbix",
     organization: "Zabbix",
-    date: "Prévue en 2026",
-    description: "Certification de supervision prévue en 2026 pour approfondir le suivi des systèmes, services et équipements avec Zabbix.",
+    date: "À venir",
+    description: "Certification Zabbix prévue pour la fin de l'année scolaire.",
   },
 ];

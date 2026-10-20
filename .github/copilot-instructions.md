@@ -81,8 +81,8 @@ Professional portfolio website for Tom Maudet - Admin System & Network.
 
 **Adding a Certification**
 1. Add an entry to `certifications` in `lib/certifications.ts` with its name, organization, date, and description.
-2. Put its PDF in `public/certifications/` and set `documentUrl` to its public path (for example, `/certifications/certification-cisco.pdf`).
-3. It automatically appears on `/certification` with a link to open the document.
+2. Put its PDF and, if available, badge image in `public/certifications/`; set `documentUrl` and `badgeUrl` to their public paths.
+3. It automatically appears on `/certification` with its badge and a link to open the document.
 
 ### Adding a New Experience
 1. Add object to `experiences` array in `lib/experiences.ts` with:

@@ -2,6 +2,7 @@ import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { certifications } from "@/lib/certifications";
 import { ArrowUpRight, Award, FileText } from "lucide-react";
+import Image from "next/image";
 
 export default function CertificationPage() {
   const hasDatedDocument = (certification: (typeof certifications)[number]) =>
@@ -19,7 +20,7 @@ export default function CertificationPage() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           title="Mes certifications"
-          subtitle="Certifications et cours en ligne que j'ai obtenus pour valider mes compétences et connaissances dans le domaine de l'informatique et du développement web."
+          subtitle="Certifications et formations obtenues ou à venir pour valider mes compétences en informatique et en développement web."
         />
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -30,6 +31,15 @@ export default function CertificationPage() {
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
                     <Award size={24} />
                   </div>
+                  {certification.badgeUrl && (
+                    <Image
+                      src={certification.badgeUrl}
+                      alt={`Badge Cisco Networking Academy : ${certification.name}`}
+                      width={80}
+                      height={80}
+                      className="h-20 w-20 rounded-xl object-contain"
+                    />
+                  )}
                 </div>
 
                 <h2 className="text-xl font-bold mb-2">{certification.name}</h2>

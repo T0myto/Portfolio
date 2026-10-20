@@ -155,7 +155,7 @@ Les données du portfolio sont séparées des pages afin de faciliter leur modif
 - **Ajouter ou modifier un projet** : compléter l’objet correspondant dans `lib/projects.ts`. Un projet comprend un identifiant, un slug, une catégorie (`course` ou `personal`), ses textes, technologies, fonctionnalités et son état (`completed` ou `in-progress`). Les pages de galerie et de détail sont générées à partir de cette liste.
 - **Ajouter une expérience** : renseigner `lib/experiences.ts` avec le poste, l’organisme, la période, les technologies et les missions.
 - **Ajouter une compétence** : ajouter une catégorie et ses éléments dans `lib/skills.ts`.
-- **Ajouter une certification** : compléter `lib/certifications.ts` et, si un justificatif est disponible, le placer dans `public/certifications/` puis renseigner son chemin public.
+- **Ajouter une certification** : compléter `lib/certifications.ts` et placer le certificat PDF ainsi que, si disponible, son badge dans `public/certifications/`, puis renseigner leurs chemins publics.
 - **Modifier l’interface** : les pages se trouvent dans `app/`, les éléments partagés dans `components/` et les styles globaux dans `styles/globals.css`.
 
 ## 🤝 Restons en contact

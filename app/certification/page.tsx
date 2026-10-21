@@ -23,7 +23,7 @@ export default function CertificationPage() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionTitle
           title="Mes certifications"
-          subtitle="Certifications et formations obtenues ou à venir pour valider mes compétences en informatique et en développement web."
+          subtitle="Découvrez mes certifications et formations en orthographe, réseaux, cybersécurité, cloud et outils d’infrastructure, ainsi que les certifications que je prépare."
         />
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">

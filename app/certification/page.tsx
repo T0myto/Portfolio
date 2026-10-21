@@ -12,7 +12,10 @@ export default function CertificationPage() {
         certification.date !== "AAAA"
     );
   const orderedCertifications = [...certifications].sort(
-    (a, b) => Number(hasDatedDocument(b)) - Number(hasDatedDocument(a))
+    (a, b) =>
+      Number(b.id === "certification-voltaire") -
+        Number(a.id === "certification-voltaire") ||
+      Number(hasDatedDocument(b)) - Number(hasDatedDocument(a))
   );
 
   return (
@@ -34,7 +37,11 @@ export default function CertificationPage() {
                   {certification.badgeUrl && (
                     <Image
                       src={certification.badgeUrl}
-                      alt={`Badge Cisco Networking Academy : ${certification.name}`}
+                      alt={
+                        certification.id === "certification-voltaire"
+                          ? "Logo officiel du Projet Voltaire"
+                          : `Badge ${certification.organization} : ${certification.name}`
+                      }
                       width={80}
                       height={80}
                       className="h-20 w-20 rounded-xl object-contain"

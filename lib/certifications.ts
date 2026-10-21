@@ -10,6 +10,15 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
+    id: "certification-voltaire",
+    name: "Certification Voltaire",
+    organization: "Projet Voltaire",
+    date: "13 octobre 2026",
+    description: "Attestation de participation à une formation consacrée à l’orthographe.",
+    documentUrl: "/certifications/certification-voltaire.pdf",
+    badgeUrl: "/certifications/badge-voltaire.svg",
+  },
+  {
     id: "certification-reseau",
     name: "Network Addressing and Basic Troubleshooting",
     organization: "Cisco Networking Academy",

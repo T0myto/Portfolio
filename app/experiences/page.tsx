@@ -1,106 +1,75 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { experiences } from "@/lib/experiences";
+import { Building2 } from "lucide-react";
 
 export default function ExperiencesPage() {
+  const orderedExperiences = [...experiences].reverse();
+
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="min-h-screen pt-32 pb-24">
+      <div className="page-container">
         <SectionTitle
+          eyebrow="Parcours"
           title="Mes expériences"
           subtitle="Un parcours dans l'infra, le réseau et la cybersécurité"
         />
 
-        <div className="space-y-16 max-w-4xl mx-auto">
-          {experiences.map((exp, idx) => (
-            <MotionFade key={exp.id} delay={idx * 0.15} direction="up">
-              <motion.div
-                className="p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md"
-                whileHover={{ y: -3, scale: 1.005 }}
-                transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              >
-                <div className="space-y-6">
-                  {/* Header */}
-                  <div className="space-y-2">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                      <div>
-                        <h3 className="text-2xl font-bold">{exp.title}</h3>
-                        <p className="text-lg text-blue-500 font-semibold">
-                          {exp.company}
-                        </p>
-                      </div>
-                      <span className="text-neutral-600 dark:text-neutral-400 font-medium">
-                        {exp.period}
-                      </span>
+        <ol className="relative max-w-4xl border-l border-neutral-200 dark:border-neutral-800">
+          {orderedExperiences.map((exp, idx) => (
+            <li key={exp.id} className="relative pb-12 pl-8 last:pb-0 sm:pl-12">
+              <span
+                className={`absolute -left-[7px] top-7 h-3.5 w-3.5 rounded-full border-2 border-white dark:border-neutral-950 ${
+                  idx === 0 ? "bg-blue-600 ring-4 ring-blue-100 dark:bg-blue-400 dark:ring-blue-500/20" : "bg-neutral-300 dark:bg-neutral-600"
+                }`}
+                aria-hidden="true"
+              />
+              <MotionFade delay={idx * 0.06}>
+                <article className="card p-6 sm:p-8">
+                  <header className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h2 className="text-xl font-semibold tracking-tight">{exp.title.trim()}</h2>
+                      <p className="mt-1.5 flex items-center gap-1.5 text-sm font-medium text-blue-700 dark:text-blue-400">
+                        <Building2 size={15} aria-hidden="true" />
+                        {exp.company}
+                      </p>
                     </div>
-                  </div>
+                    <span className="tag w-fit shrink-0 font-mono">{exp.period}</span>
+                  </header>
 
-                  {/* Description */}
-                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  <p className="mt-5 leading-7 text-neutral-600 dark:text-neutral-400">
                     {exp.description}
                   </p>
 
-                  {/* Highlights */}
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm">Points clés :</h4>
-                    <ul className="space-y-2">
-                      {exp.highlights.map((highlight) => (
-                        <motion.li
-                          key={highlight}
-                          className="flex gap-3 text-neutral-600 dark:text-neutral-400 text-sm"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                        >
-                          <span className="text-blue-500 font-bold">→</span>
-                          {highlight}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300 rounded-full text-xs font-medium border border-neutral-200 dark:border-neutral-700"
+                  <h3 className="mt-6 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                    Missions principales
+                  </h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {exp.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex gap-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400"
                       >
+                        <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" aria-hidden="true" />
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-6 flex flex-wrap gap-1.5 border-t border-neutral-100 pt-5 dark:border-neutral-800">
+                    {exp.technologies.map((tech) => (
+                      <span key={tech} className="tag">
                         {tech}
                       </span>
                     ))}
                   </div>
-                </div>
-              </motion.div>
-            </MotionFade>
+                </article>
+              </MotionFade>
+            </li>
           ))}
-        </div>
-
-        {/* Timeline Visualization */}
-        <motion.div
-          className="mt-20 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-bold text-center mb-8">Timeline</h3>
-          <div className="relative space-y-8">
-            {experiences.map((exp) => (
-              <div key={exp.id} className="relative pl-8">
-                <div className="absolute left-0 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-neutral-950"></div>
-                <div className="space-y-1">
-                  <p className="font-semibold text-blue-500">{exp.period}</p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {exp.title} — {exp.company}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        </ol>
       </div>
     </div>
   );

@@ -1,186 +1,120 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { projects } from "@/lib/projects";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { StatusBadge } from "@/components/StatusBadge";
+
+const projectGroups = [
+  {
+    category: "course",
+    title: "Projets de formation",
+    description: "Des projets réalisés dans le cadre de mes formations.",
+  },
+  {
+    category: "personal",
+    title: "Projets personnels",
+    description:
+      "Des projets personnels pour approfondir mes connaissances et mettre en pratique les notions abordées lors de mes certifications.",
+  },
+] as const;
 
 export default function ProjetsPage() {
-  const projectGroups = [
-    {
-      category: "course",
-      title: "Projets de formation",
-      description: "Des projets réalisés dans le cadre de mes formations.",
-      placeholders: [1, 2, 3],
-    },
-    {
-      category: "personal",
-      title: "Projets personnels",
-      description:
-        "Des projets personnels pour approfondir mes connaissances et mettre en pratique les notions abordées lors de mes certifications.",
-      placeholders: [],
-    },
-  ] as const;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 14 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
-
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="min-h-screen pt-32 pb-24">
+      <div className="page-container">
         <SectionTitle
+          eyebrow="Réalisations"
           title="Mes projets"
           subtitle="Des projets autour des réseaux, de l’infrastructure, du développement et de l’ingénierie électronique."
         />
 
-        <div className="space-y-16">
-          {projectGroups.map((group) => (
-            <section
-              key={group.category}
-              aria-labelledby={`projects-${group.category}`}
-            >
-              <div className="mb-8 text-center">
-                <h2
-                  id={`projects-${group.category}`}
-                  className="text-2xl md:text-3xl font-bold mb-2"
-                >
-                  {group.title}
-                </h2>
-                <p className="text-neutral-600 dark:text-neutral-400">
-                  {group.description}
-                </p>
-              </div>
-              <motion.div
-                className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
+        <div className="space-y-20">
+          {projectGroups.map((group) => {
+            const groupProjects = projects
+              .filter((project) => project.category === group.category)
+              .sort((a, b) =>
+                a.status === b.status ? 0 : a.status === "in-progress" ? -1 : 1
+              );
+
+            if (groupProjects.length === 0) return null;
+
+            return (
+              <section
+                key={group.category}
+                aria-labelledby={`projects-${group.category}`}
               >
-                {projects
-                  .filter((project) => project.category === group.category)
-                  .sort((a, b) =>
-                    a.status === b.status
-                      ? 0
-                      : a.status === "in-progress"
-                        ? -1
-                        : 1
-                  )
-                  .map((project) => (
-                    <motion.div
-                      key={project.id}
-                      variants={itemVariants}
-                      whileHover={{ y: -3, scale: 1.005 }}
-                      transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                      className="group"
+                <div className="mb-8 flex flex-col gap-2 border-b border-neutral-200 pb-5 dark:border-neutral-800 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2
+                      id={`projects-${group.category}`}
+                      className="text-2xl font-semibold tracking-tight"
                     >
-                      <Link href={`/projets/${project.slug}`}>
-                        <div className="h-full p-6 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md cursor-pointer">
-                          <div className="flex items-start justify-between mb-4">
-                            <span
-                              className="inline-flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-300"
-                            >
-                              <span
-                                aria-hidden="true"
-                                className={`relative inline-flex h-3 w-3 shrink-0 items-center justify-center rounded-full ${
-                                  project.status === "completed"
-                                    ? "bg-green-400/20"
-                                    : "bg-red-400/20"
-                                }`}
-                              >
-                                <span
-                                  className={`h-1.5 w-1.5 rounded-full ${
-                                    project.status === "completed"
-                                      ? "bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.75)]"
-                                      : "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.75)]"
-                                  }`}
-                                />
-                              </span>
-                              {project.status === "completed"
-                                ? "Complété"
-                                : "En cours"}
+                      {group.title}
+                    </h2>
+                    <p className="mt-1.5 max-w-2xl text-sm text-neutral-600 dark:text-neutral-400">
+                      {group.description}
+                    </p>
+                  </div>
+                  <span className="font-mono text-xs text-neutral-500">
+                    {String(groupProjects.length).padStart(2, "0")} projets
+                  </span>
+                </div>
+
+                <div className="grid gap-5 md:grid-cols-2">
+                  {groupProjects.map((project, index) => (
+                    <MotionFade key={project.id} delay={Math.min(index, 3) * 0.05}>
+                      <Link
+                        href={`/projets/${project.slug}`}
+                        className="card card-hover group flex h-full flex-col p-6 sm:p-7"
+                      >
+                        <div className="flex items-center justify-between">
+                          <StatusBadge status={project.status} />
+                          <ArrowUpRight
+                            size={18}
+                            className="text-neutral-400 transition-colors group-hover:text-blue-700 dark:group-hover:text-blue-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+
+                        <h3 className="mt-5 text-lg font-semibold leading-snug group-hover:text-blue-700 dark:group-hover:text-blue-400">
+                          {project.title}
+                        </h3>
+                        <p className="mt-2 flex-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                          {project.shortDesc}
+                        </p>
+
+                        <div className="mt-6 flex flex-wrap items-center gap-1.5">
+                          {project.technologies.slice(0, 4).map((tech) => (
+                            <span key={tech} className="tag">
+                              {tech}
                             </span>
-                          </div>
-
-                          <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors">
-                            {project.title}
-                          </h3>
-                          <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-                            {project.shortDesc}
-                          </p>
-
-                          <div className="flex flex-wrap gap-2 mb-6">
-                            {project.technologies.slice(0, 3).map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded text-xs font-medium"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                            {project.technologies.length > 3 && (
-                              <span className="px-2 py-1 text-neutral-500 text-xs font-medium">
-                                +{project.technologies.length - 3}
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="flex items-center gap-2 text-blue-500 font-semibold text-sm group-hover:gap-3 transition-all">
-                            Voir le détail <ArrowRight size={16} />
-                          </div>
+                          ))}
+                          {project.technologies.length > 4 && (
+                            <span className="px-1 font-mono text-xs text-neutral-500">
+                              +{project.technologies.length - 4}
+                            </span>
+                          )}
                         </div>
                       </Link>
-                    </motion.div>
+                    </MotionFade>
                   ))}
-                {group.category === "course" &&
-                  projects.filter((project) => project.category === group.category).length === 0 &&
-                  group.placeholders.map((placeholder) => (
-                  <motion.div
-                    key={`school-placeholder-${placeholder}`}
-                    variants={itemVariants}
-                    className="min-h-48 p-6 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-2xl flex flex-col justify-center"
-                  >
-                    <h3 className="font-semibold text-neutral-700 dark:text-neutral-300">
-                      Projet d&apos;école à ajouter
-                    </h3>
-                    <p className="text-sm text-neutral-500 mt-2">
-                      Remplacez cet emplacement par un projet de formation.
-                    </p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </section>
-          ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
 
-        {/* Additional Info */}
-        <MotionFade delay={0.5}>
-          <div className="mt-20 text-center space-y-6 max-w-2xl mx-auto">
-            <p className="text-neutral-600 dark:text-neutral-400">
-              Vous avez un projet en tête ? Parlons-en !
-            </p>
-            <Link
-              href="/contact"
-              className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Me contacter
+        <MotionFade>
+          <div className="card mt-24 flex flex-col items-start justify-between gap-6 p-8 sm:flex-row sm:items-center">
+            <div>
+              <h2 className="text-xl font-semibold">Vous avez un projet en tête ?</h2>
+              <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">Parlons-en !</p>
+            </div>
+            <Link href="/contact" className="btn-primary">
+              Me contacter <ArrowRight size={16} />
             </Link>
           </div>
         </MotionFade>

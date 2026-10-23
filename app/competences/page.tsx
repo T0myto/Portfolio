@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { skills } from "@/lib/skills";
@@ -18,165 +17,68 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const categoryStyles = [
-  {
-    icon: Network,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Server,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: HardDrive,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Box,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: ShieldCheck,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Activity,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Home,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Code2,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: Wrench,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
-  {
-    icon: ClipboardList,
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "bg-neutral-50 border-neutral-200 group-hover:border-blue-300 dark:bg-neutral-800/50 dark:border-neutral-700 dark:group-hover:border-blue-700",
-  },
+const categoryIcons = [
+  Network,
+  Server,
+  HardDrive,
+  Box,
+  ShieldCheck,
+  Activity,
+  Home,
+  Code2,
+  Wrench,
+  ClipboardList,
 ];
 
 export default function CompetencesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const totalSkills = skills.reduce((total, skill) => total + skill.items.length, 0);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
+  const filterClass = (active: boolean) =>
+    `rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+      active
+        ? "border-neutral-900 bg-neutral-900 text-white dark:border-white dark:bg-white dark:text-neutral-900"
+        : "border-neutral-200 bg-white text-neutral-600 hover:border-neutral-300 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:border-neutral-700 dark:hover:text-white"
+    }`;
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="min-h-screen pt-32 pb-24">
+      <div className="page-container">
         <SectionTitle
+          eyebrow="Socle technique"
           title="Compétences"
-          subtitle="Les technologies et outils avec lesquels je travaille"
-        />
-
-        <MotionFade delay={0.15}>
-          <div className="relative mb-12 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900 sm:p-8">
-            <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                  <Network size={23} />
-                </div>
-                <div>
-                  <p className="font-semibold">Mon socle technique</p>
-                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    Des langages aux infrastructures, les outils que je mobilise
-                    pour concevoir, déployer et sécuriser des solutions.
-                  </p>
-                </div>
-              </div>
-              <div className="flex shrink-0 gap-3 sm:gap-5">
-                <div>
-                  <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-                    {skills.length}
-                  </p>
-                  <p className="text-xs text-neutral-500">domaines</p>
-                </div>
-                <div className="w-px bg-neutral-200 dark:bg-neutral-700" />
-                <div>
-                  <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-                    {skills.reduce((total, skill) => total + skill.items.length, 0)}
-                  </p>
-                  <p className="text-xs text-neutral-500">compétences</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </MotionFade>
-
-        {/* Category Filter */}
-        <motion.div
-          className="mb-14 flex flex-wrap justify-center gap-2.5"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          subtitle="Les technologies et outils avec lesquels je travaille, des langages aux infrastructures, pour concevoir, déployer et sécuriser des solutions."
         >
-          <motion.button
-            variants={itemVariants}
+          <p className="mt-6 font-mono text-sm text-neutral-500">
+            {skills.length} domaines · {totalSkills} compétences
+          </p>
+        </SectionTitle>
+
+        <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filtrer par domaine">
+          <button
             onClick={() => setSelectedCategory(null)}
             aria-pressed={selectedCategory === null}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-              selectedCategory === null
-                ? "bg-blue-600 text-white"
-                : "border border-neutral-200 bg-white text-neutral-600 hover:border-blue-500/40 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-blue-400"
-            }`}
+            className={filterClass(selectedCategory === null)}
           >
             Toutes
-          </motion.button>
+          </button>
           {skills.map((skill) => (
-            <motion.button
+            <button
               key={skill.category}
-              variants={itemVariants}
               onClick={() =>
                 setSelectedCategory(
                   selectedCategory === skill.category ? null : skill.category
                 )
               }
               aria-pressed={selectedCategory === skill.category}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-all ${
-                selectedCategory === skill.category
-                  ? "border-blue-600 bg-blue-600 text-white"
-                  : "border-neutral-200 bg-white text-neutral-600 hover:border-blue-500/40 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:text-blue-400"
-              }`}
+              className={filterClass(selectedCategory === skill.category)}
             >
               {skill.category}
-            </motion.button>
+            </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Skills Grid */}
-        <div className="space-y-6">
+        <div className="grid gap-5 md:grid-cols-2">
           {skills
             .filter(
               (skill) =>
@@ -184,51 +86,35 @@ export default function CompetencesPage() {
             )
             .map((skill, idx) => {
               const categoryIndex = skills.indexOf(skill);
-              const style = categoryStyles[categoryIndex % categoryStyles.length];
-              const Icon = style.icon;
+              const Icon = categoryIcons[categoryIndex % categoryIcons.length];
 
               return (
-                <MotionFade key={skill.category} delay={idx * 0.1}>
-                  <section className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900">
-                    <div className="p-5 sm:p-7">
-                      <div className="mb-6 flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                            <Icon size={21} />
-                          </div>
-                          <div>
-                            <h3 className="text-lg font-bold sm:text-xl">
-                              {skill.category}
-                            </h3>
-                            <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
-                              {skill.items.length} compétences
-                            </p>
-                          </div>
+                <MotionFade key={skill.category} delay={Math.min(idx, 4) * 0.05}>
+                  <section className="card h-full p-6 sm:p-7">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:ring-blue-500/20">
+                          <Icon size={19} aria-hidden="true" />
                         </div>
-                        <span className={`hidden text-sm font-semibold sm:block ${style.accent}`}>
-                          {String(categoryIndex + 1).padStart(2, "0")}
-                        </span>
+                        <h2 className="text-base font-semibold sm:text-lg">
+                          {skill.category}
+                        </h2>
                       </div>
-
-                      <motion.div
-                        className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                      >
-                        {skill.items.map((item) => (
-                          <motion.div
-                            key={item}
-                            variants={itemVariants}
-                            whileHover={{ y: -1 }}
-                            className={`group flex items-center gap-2.5 rounded-xl border px-3 py-3 transition-colors sm:px-4 ${style.chip}`}
-                          >
-                            <span className="h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-                            <p className="text-sm font-semibold">{item}</p>
-                          </motion.div>
-                        ))}
-                      </motion.div>
+                      <span className="font-mono text-xs text-neutral-400">
+                        {String(categoryIndex + 1).padStart(2, "0")}
+                      </span>
                     </div>
+
+                    <ul className="mt-6 flex flex-wrap gap-2">
+                      {skill.items.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-md border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-sm font-medium text-neutral-700 dark:border-neutral-700/80 dark:bg-neutral-800/60 dark:text-neutral-200"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </section>
                 </MotionFade>
               );

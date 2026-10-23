@@ -1,7 +1,7 @@
 import { MotionFade } from "@/components/MotionFade";
 import { SectionTitle } from "@/components/SectionTitle";
 import { certifications } from "@/lib/certifications";
-import { ArrowUpRight, Award, FileText } from "lucide-react";
+import { ArrowUpRight, Award, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 
 export default function CertificationPage() {
@@ -19,62 +19,78 @@ export default function CertificationPage() {
   );
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="min-h-screen pt-32 pb-24">
+      <div className="page-container">
         <SectionTitle
+          eyebrow="Formation continue"
           title="Mes certifications"
           subtitle="Découvrez mes certifications et formations en orthographe, réseaux, cybersécurité, cloud et outils d’infrastructure, ainsi que les certifications que je prépare."
         />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {orderedCertifications.map((certification, index) => (
-            <MotionFade key={certification.id} delay={index * 0.15}>
-              <article className="h-full p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-neutral-300 hover:shadow-md dark:hover:border-neutral-700 motion-reduce:transform-none motion-reduce:transition-none">
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
-                    <Award size={24} />
-                  </div>
-                  {certification.badgeUrl && (
-                    <Image
-                      src={certification.badgeUrl}
-                      alt={
-                        certification.id === "certification-voltaire"
-                          ? "Logo officiel du Projet Voltaire"
-                          : `Badge ${certification.organization} : ${certification.name}`
-                      }
-                      width={80}
-                      height={80}
-                      className="h-20 w-20 rounded-xl object-contain"
-                    />
-                  )}
-                </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {orderedCertifications.map((certification, index) => {
+            const upcoming = certification.date === "À venir";
 
-                <h2 className="text-xl font-bold mb-2">{certification.name}</h2>
-                <p className="text-blue-500 font-semibold mb-4">
-                  {certification.organization}
-                  <span className="text-neutral-500 dark:text-neutral-400 font-normal">
-                    {" "}
-                    · {certification.date}
-                  </span>
-                </p>
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
-                  {certification.description}
-                </p>
-                {certification.documentUrl && (
-                  <a
-                    href={certification.documentUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm font-semibold text-neutral-700 transition-colors hover:border-blue-300 hover:text-blue-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:border-blue-700 dark:hover:text-blue-400"
-                  >
-                    <FileText size={17} />
-                    Consulter le justificatif
-                    <ArrowUpRight size={15} />
-                  </a>
-                )}
-              </article>
-            </MotionFade>
-          ))}
+            return (
+              <MotionFade key={certification.id} delay={Math.min(index, 3) * 0.05}>
+                <article
+                  className={`card flex h-full flex-col p-6 sm:p-7 ${
+                    upcoming ? "border-dashed bg-neutral-50/60 dark:bg-neutral-900/30" : ""
+                  }`}
+                >
+                  <div className="flex items-start gap-5">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-100">
+                      {certification.badgeUrl ? (
+                        <Image
+                          src={certification.badgeUrl}
+                          alt={
+                            certification.id === "certification-voltaire"
+                              ? "Logo officiel du Projet Voltaire"
+                              : `Badge ${certification.organization} : ${certification.name}`
+                          }
+                          width={64}
+                          height={64}
+                          className="h-14 w-14 object-contain"
+                        />
+                      ) : (
+                        <Award size={24} className="text-blue-700" aria-hidden="true" />
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-blue-700 dark:text-blue-400">
+                        {certification.organization}
+                      </p>
+                      <h2 className="mt-1 text-lg font-semibold leading-snug">{certification.name}</h2>
+                      <p
+                        className={`mt-2 inline-flex items-center gap-1.5 font-mono text-xs ${
+                          upcoming ? "text-amber-700 dark:text-amber-400" : "text-neutral-500"
+                        }`}
+                      >
+                        <Calendar size={13} aria-hidden="true" />
+                        {upcoming ? "En préparation" : certification.date}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-5 flex-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                    {certification.description}
+                  </p>
+                  {certification.documentUrl && (
+                    <a
+                      href={certification.documentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-neutral-800 transition-colors hover:text-blue-700 dark:text-neutral-200 dark:hover:text-blue-400"
+                    >
+                      <FileText size={16} />
+                      Consulter le justificatif
+                      <ArrowUpRight size={14} />
+                    </a>
+                  )}
+                </article>
+              </MotionFade>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import { MotionFade } from "@/components/MotionFade";
+import { StatusBadge } from "@/components/StatusBadge";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
-import { ArrowLeft, ArrowUpRight, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, Github, ExternalLink } from "lucide-react";
 
 interface ProjectDetailPageProps {
   params: Promise<{
@@ -25,11 +26,8 @@ export default async function ProjectDetailPage({
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-6">
-          <h1 className="text-4xl font-bold">Projet non trouvé</h1>
-          <Link
-            href="/projets"
-            className="inline-block px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-          >
+          <h1 className="text-4xl font-semibold">Projet non trouvé</h1>
+          <Link href="/projets" className="btn-primary">
             Retour aux projets
           </Link>
         </div>
@@ -37,187 +35,127 @@ export default async function ProjectDetailPage({
     );
   }
 
+  const githubUrl =
+    project.github ?? (project.slug === "facilock" ? "https://github.com/constantseg/FaciLock" : undefined);
+  const caseStudy = [
+    { label: "Défi", text: project.challenge },
+    { label: "Solution", text: project.solution },
+    { label: "Résultat", text: project.result },
+  ];
+
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Back Button */}
+    <div className="min-h-screen pt-28 pb-24">
+      <div className="page-container">
         <MotionFade>
           <Link
             href="/projets"
-            className="inline-flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-blue-500 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
           >
-            <ArrowLeft size={20} /> Retour aux projets
+            <ArrowLeft size={16} /> Retour aux projets
           </Link>
         </MotionFade>
 
-        {/* Project Header */}
-        <MotionFade delay={0.1}>
-          <div className="mb-12 space-y-4">
-            <span
-              className="inline-flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-300"
-            >
-              <span
-                aria-hidden="true"
-                className={`relative inline-flex h-3 w-3 shrink-0 items-center justify-center rounded-full ${
-                  project.status === "completed"
-                    ? "bg-green-400/20"
-                    : "bg-red-400/20"
-                }`}
-              >
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    project.status === "completed"
-                      ? "bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.75)]"
-                      : "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.75)]"
-                  }`}
-                />
+        <MotionFade delay={0.05}>
+          <header className="mt-10 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <StatusBadge status={project.status} />
+              <span className="font-mono text-xs text-neutral-500">
+                {project.category === "course" ? "Projet de formation" : "Projet personnel"}
               </span>
-              {project.status === "completed" ? "Complété" : "En cours"}
-            </span>
-            <h1 className="text-5xl font-bold">{project.title}</h1>
-            <p className="text-xl text-neutral-600 dark:text-neutral-400">
+            </div>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">{project.title}</h1>
+            <p className="mt-5 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
               {project.shortDesc}
             </p>
-          </div>
+            {(githubUrl || project.demo) && (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {githubUrl && (
+                  <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                    <Github size={17} /> Voir le dépôt GitHub <ArrowUpRight size={15} />
+                  </a>
+                )}
+                {project.demo && (
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                    <ExternalLink size={17} /> Voir la démo
+                  </a>
+                )}
+              </div>
+            )}
+          </header>
         </MotionFade>
 
-        {/* Technologies */}
-        <MotionFade delay={0.2}>
-          <div className="mb-12 p-6 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800">
-            <h3 className="font-semibold mb-4">Technologies utilisées</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 rounded-full text-sm font-medium border border-neutral-200 dark:border-neutral-700"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </MotionFade>
-
-        {/* Content Grid */}
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          {/* Description */}
-          <MotionFade delay={0.3} direction="left">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold mb-3">Description</h2>
-                <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        <div className="mt-16 grid gap-12 border-t border-neutral-200 pt-12 dark:border-neutral-800 lg:grid-cols-[1fr_320px]">
+          <MotionFade delay={0.1}>
+            <div className="space-y-12">
+              <section>
+                <h2 className="text-xl font-semibold tracking-tight">Description</h2>
+                <p className="mt-4 leading-7 text-neutral-600 dark:text-neutral-400">
                   {project.fullDesc}
                 </p>
-              </div>
+              </section>
 
-              <div>
-                <h3 className="font-bold mb-2">Fonctionnalités clés :</h3>
-                <ul className="space-y-2">
+              <section>
+                <h2 className="text-xl font-semibold tracking-tight">Fonctionnalités clés</h2>
+                <ul className="mt-5 space-y-3">
                   {project.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex gap-2 text-neutral-600 dark:text-neutral-400"
+                      className="flex gap-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400"
                     >
-                      <span className="text-blue-500 font-bold">✓</span>
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">
+                        <Check size={12} strokeWidth={3} aria-hidden="true" />
+                      </span>
                       {feature}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
+
+              <section className="grid gap-4">
+                {caseStudy.map(({ label, text }, index) => (
+                  <div key={label} className="card p-6">
+                    <p className="font-mono text-xs font-medium uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                      {String(index + 1).padStart(2, "0")} · {label}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{text}</p>
+                  </div>
+                ))}
+              </section>
             </div>
           </MotionFade>
 
-          {/* Challenge & Solution */}
-          <MotionFade delay={0.4} direction="right">
-            <div className="space-y-6">
-              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
-              <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
-                  Défi
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-                  {project.challenge}
-                </p>
+          <MotionFade delay={0.15}>
+            <aside className="card p-6 lg:sticky lg:top-24">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                Technologies utilisées
+              </h2>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="tag">
+                    {tech}
+                  </span>
+                ))}
               </div>
-
-              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
-                <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
-                  Solution
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-                  {project.solution}
-                </p>
-              </div>
-
-              <div className="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800">
-                <h3 className="font-bold mb-3 text-blue-700 dark:text-blue-400">
-                  Résultat
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-                  {project.result}
-                </p>
-              </div>
-              {project.slug === "facilock" && (
-                <div className="flex justify-end pt-1">
-                  <a
-                    href="https://github.com/constantseg/FaciLock"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30"
-                  >
-                    <Github size={18} />
-                    Voir le dépôt GitHub
-                    <ArrowUpRight size={16} />
-                  </a>
-                </div>
-              )}
-            </div>
+            </aside>
           </MotionFade>
         </div>
 
-        {/* CTA */}
-        {(project.github || project.demo) && (
-          <MotionFade delay={0.5}>
-            <div className="flex gap-4">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-lg font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity"
-                >
-                  <Github size={20} /> Voir le code
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 transition-colors"
-                >
-                  <ExternalLink size={20} /> Voir la démo
-                </a>
-              )}
-            </div>
-          </MotionFade>
-        )}
-
-        {/* Related Projects */}
-        <div className="mt-20 pt-12 border-t border-neutral-200 dark:border-neutral-800">
-          <MotionFade delay={0.6}>
-            <h3 className="text-2xl font-bold mb-8">Autres projets</h3>
-            <div className="grid md:grid-cols-2 gap-6">
+        <div className="mt-24 border-t border-neutral-200 pt-12 dark:border-neutral-800">
+          <MotionFade>
+            <h2 className="text-2xl font-semibold tracking-tight">Autres projets</h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
               {projects
                 .filter((p) => p.id !== project.id)
                 .slice(0, 2)
                 .map((p) => (
-                  <Link key={p.id} href={`/projets/${p.slug}`}>
-                    <div className="p-6 bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-all hover:shadow-md cursor-pointer">
-                      <h4 className="font-bold mb-2">{p.title}</h4>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                        {p.shortDesc}
-                      </p>
+                  <Link key={p.id} href={`/projets/${p.slug}`} className="card card-hover group p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-semibold group-hover:text-blue-700 dark:group-hover:text-blue-400">{p.title}</h3>
+                      <ArrowUpRight size={17} className="shrink-0 text-neutral-400" aria-hidden="true" />
                     </div>
+                    <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                      {p.shortDesc}
+                    </p>
                   </Link>
                 ))}
             </div>

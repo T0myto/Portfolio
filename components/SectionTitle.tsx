@@ -6,49 +6,48 @@ import { motion } from "framer-motion";
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   children?: ReactNode;
 }
 
-export function SectionTitle({ title, subtitle, children }: SectionTitleProps) {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+export function SectionTitle({ title, subtitle, eyebrow, children }: SectionTitleProps) {
   return (
     <motion.div
-      className="mb-12 border-b border-neutral-200 pb-8 text-left dark:border-neutral-800 md:mb-14"
+      className="mb-12 max-w-3xl md:mb-16"
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.08 } },
+        visible: { transition: { staggerChildren: 0.07 } },
       }}
     >
-      <motion.h2
+      {eyebrow && (
+        <motion.p
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+          className="eyebrow mb-4"
+        >
+          <span className="h-px w-6 bg-current" aria-hidden="true" />
+          {eyebrow}
+        </motion.p>
+      )}
+      <motion.h1
         variants={{
           hidden: { opacity: 0, y: 10 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-          },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
         }}
-        className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl"
+        className="text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-5xl"
       >
         {title}
-      </motion.h2>
-      <motion.div
-        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-        className="my-4 h-px w-12 origin-left bg-gold-600"
-      />
+      </motion.h1>
       {subtitle && (
         <motion.p
           variants={{
             hidden: { opacity: 0, y: 8 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-            },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
           }}
-          className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg"
+          className="mt-5 text-lg leading-relaxed text-neutral-600 dark:text-neutral-400"
         >
           {subtitle}
         </motion.p>

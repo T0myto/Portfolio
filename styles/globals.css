@@ -23,8 +23,8 @@ html {
 }
 
 body {
-  @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-[var(--background)] font-sans text-[var(--foreground)] antialiased;
+  font-feature-settings: "cv11", "ss01";
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -36,12 +36,56 @@ body {
   @apply outline outline-2 outline-offset-4 outline-blue-600;
 }
 
+@layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-6xl px-6;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.16em] text-gold-700 dark:text-gold-300;
+  }
+
+  .card {
+    @apply rounded-2xl border border-neutral-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] dark:border-neutral-800 dark:bg-neutral-900/60;
+  }
+
+  .card-hover {
+    @apply transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-neutral-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.18)] dark:hover:border-neutral-700 motion-reduce:transform-none;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-xs font-medium text-neutral-700 dark:border-neutral-700/80 dark:bg-neutral-800/60 dark:text-neutral-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-blue-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-800 transition-colors hover:border-neutral-400 hover:bg-neutral-50 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-200 dark:hover:bg-neutral-900;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(55 55 55 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(55 55 55 / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .dark .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(245 244 240 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(245 244 240 / 0.05) 1px, transparent 1px);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-neutral-100 dark:bg-neutral-900;
+  @apply bg-neutral-100 dark:bg-neutral-950;
 }
 
 ::-webkit-scrollbar-thumb {

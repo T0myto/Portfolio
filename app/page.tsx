@@ -1,196 +1,150 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Network, Server, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Network, Server, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  }
-};
+const focusAreas = [
+  {
+    number: "01",
+    icon: Network,
+    title: "Réseaux",
+    description: "Conception, configuration et dépannage d’infrastructures réseau.",
+  },
+  {
+    number: "02",
+    icon: Server,
+    title: "Systèmes",
+    description: "Installation et administration de serveurs Windows et Linux.",
+  },
+  {
+    number: "03",
+    icon: ShieldCheck,
+    title: "Infrastructure",
+    description: "Virtualisation, services et sécurisation des environnements.",
+  },
+];
 
 export default function Home() {
-  const focusAreas = [
-    {
-      icon: Network,
-      title: "Réseaux",
-      description: "Conception, configuration et dépannage d’infrastructures réseau.",
-    },
-    {
-      icon: Server,
-      title: "Systèmes",
-      description: "Installation et administration de serveurs Windows et Linux.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Infrastructure",
-      description: "Virtualisation, services et sécurisation des environnements.",
-    },
-  ];
-
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Subtle background accent */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute w-96 h-96 bg-blue-500/[0.06] rounded-full blur-3xl"
-            animate={{
-              x: [0, 50, -50, 0],
-              y: [0, 30, -30, 0]
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-            style={{ left: "-10%", top: "-10%" }}
-          />
-          <motion.div
-            className="absolute w-96 h-96 bg-blue-500/[0.04] rounded-full blur-3xl"
-            animate={{
-              x: [0, -50, 50, 0],
-              y: [0, -30, 30, 0]
-            }}
-            transition={{ duration: 8, repeat: Infinity, delay: 1 }}
-            style={{ right: "-10%", bottom: "-10%" }}
-          />
+    <>
+      <section className="relative flex min-h-[calc(100svh-72px)] items-center overflow-hidden pt-24">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute -right-48 top-10 h-[34rem] w-[34rem] rounded-full border border-neutral-200/70 dark:border-neutral-800/70" />
+          <div className="absolute -right-24 top-32 h-[26rem] w-[26rem] rounded-full border border-neutral-200/70 dark:border-neutral-800/70" />
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
-            <motion.div variants={itemVariants} className="mb-6 inline-block">
-              <div className="px-4 py-2 rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 flex items-center gap-2">
-                <Sparkles size={16} className="text-blue-500" />
-                <p className="text-sm text-neutral-600 dark:text-neutral-300">Bienvenue sur mon portfolio</p>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              variants={itemVariants}
-              className="text-5xl md:text-7xl font-bold mb-6 text-neutral-900 dark:text-neutral-50">
+        <div className="relative mx-auto grid w-full max-w-6xl gap-14 px-6 pb-20 pt-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+          >
+            <p className="mb-7 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+              <span className="h-px w-8 bg-gold-600" />
+              Portfolio professionnel
+            </p>
+            <h1 className="max-w-3xl text-5xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-6xl md:text-7xl">
               Tom Maudet
-            </motion.h1>
+            </h1>
+            <p className="mt-5 max-w-2xl text-xl font-medium leading-relaxed text-neutral-600 dark:text-neutral-300 sm:text-2xl">
+              Technicien systèmes, réseaux & infrastructure
+            </p>
+            <p className="mt-6 max-w-xl text-base leading-7 text-neutral-600 dark:text-neutral-400">
+              Je conçois, déploie et administre des infrastructures informatiques fiables et sécurisées. Découvrez mon parcours, mes compétences et les projets qui le font avancer.
+            </p>
 
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto">
-              Technicien Système | Infrastructure & Réseau
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg text-neutral-500 dark:text-neutral-500 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Je conçois, déploie et administre des infrastructures systèmes et réseaux, avec une attention particulière portée à leur fiabilité et à leur sécurité.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/projets">
-                <motion.button
-                  className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 w-full sm:w-auto justify-center transition-colors"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.95 }}>
-                  Voir mes projets
-                  <ArrowRight size={20} />
-                </motion.button>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/projets"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-blue-200"
+              >
+                Découvrir mes projets <ArrowRight size={17} />
               </Link>
-              <Link href="/contact">
-                <motion.button
-                  className="px-8 py-4 border-2 border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-lg font-semibold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors w-full sm:w-auto"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.95 }}>
-                  Me contacter
-                </motion.button>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-lg border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:bg-white dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-900"
+              >
+                Me contacter
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants} className="flex gap-4 justify-center">
-              <motion.a
+            <div className="mt-9 flex items-center gap-3">
+              <a
                 href="https://github.com/T0myto"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 hover:bg-blue-500 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}>
-                <Github size={24} />
-              </motion.a>
-              <motion.a
+                aria-label="GitHub de Tom Maudet"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors hover:border-neutral-300 hover:text-blue-700 dark:border-neutral-800 dark:text-neutral-400 dark:hover:text-blue-300"
+              >
+                <Github size={18} />
+              </a>
+              <a
                 href="https://www.linkedin.com/in/tom-maudet-244aa7336/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-neutral-200 dark:bg-neutral-800 hover:bg-blue-500 hover:text-white transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}>
-                <Linkedin size={24} />
-              </motion.a>
-            </motion.div>
+                aria-label="LinkedIn de Tom Maudet"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors hover:border-neutral-300 hover:text-blue-700 dark:border-neutral-800 dark:text-neutral-400 dark:hover:text-blue-300"
+              >
+                <Linkedin size={18} />
+              </a>
+              <span className="ml-1 text-sm text-neutral-500 dark:text-neutral-400">
+                Retrouvez mon travail
+              </span>
+            </div>
           </motion.div>
-        </div>
-      </section>
 
-      <section className="border-t border-neutral-200 bg-neutral-50 py-20 dark:border-neutral-800 dark:bg-neutral-900/30">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
-              Mon domaine
+          <motion.aside
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.12 }}
+            className="relative border-y border-neutral-200 py-7 dark:border-neutral-800 lg:border-y-0 lg:border-l lg:py-2 lg:pl-10"
+          >
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
+              Domaines d’intervention
             </p>
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50 sm:text-4xl">
-              Des bases solides pour des infrastructures fiables
-            </h2>
-            <p className="mt-4 leading-relaxed text-neutral-600 dark:text-neutral-400">
-              De l’administration quotidienne à la mise en place de services, je m’intéresse à chaque étape qui rend un environnement informatique stable, pratique et sécurisé.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {focusAreas.map((area, index) => {
-              const Icon = area.icon;
-              return (
-                <motion.article
-                  key={area.title}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={{
-                    hidden: { opacity: 0, y: 14 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.6,
-                        delay: index * 0.08,
-                        ease: [0.22, 1, 0.36, 1],
-                      },
-                    },
-                  }}
-                  whileHover={{ y: -3 }}
-                  className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900"
-                >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                    <Icon size={21} />
+            <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
+              {focusAreas.map(({ number, icon: Icon, title, description }) => (
+                <div key={title} className="flex gap-4 py-5 first:pt-0 last:pb-0">
+                  <span className="pt-1 text-xs font-medium tabular-nums text-neutral-400">
+                    {number}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2.5">
+                      <Icon size={17} className="text-gold-700 dark:text-gold-300" aria-hidden="true" />
+                      <h2 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+                        {title}
+                      </h2>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                      {description}
+                    </p>
                   </div>
-                  <h3 className="mb-2 text-lg font-bold">{area.title}</h3>
-                  <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-                    {area.description}
-                  </p>
-                </motion.article>
-              );
-            })}
-          </div>
+                </div>
+              ))}
+            </div>
+          </motion.aside>
         </div>
       </section>
-    </div>
+
+      <section className="border-t border-neutral-200 bg-white py-10 dark:border-neutral-800 dark:bg-neutral-950">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+              Un parcours construit autour de l’infrastructure
+            </p>
+            <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+              Systèmes · Réseaux · Sécurité
+            </p>
+          </div>
+          <Link
+            href="/experiences"
+            className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-900 dark:text-blue-300 dark:hover:text-blue-100"
+          >
+            Parcourir mes expériences <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

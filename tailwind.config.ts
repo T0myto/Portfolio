@@ -7,7 +7,46 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
-        foreground: "var(--foreground)"
+        foreground: "var(--foreground)",
+        neutral: {
+          50: "#faf9f6",
+          100: "#f3f0e8",
+          200: "#e4dfd4",
+          300: "#cec7b9",
+          400: "#babdc2",
+          500: "#a1a5aa",
+          600: "#858990",
+          700: "#646970",
+          800: "#484c52",
+          900: "#34373c",
+          950: "#25282c"
+        },
+        blue: {
+          50: "#f0f6fc",
+          100: "#dceafa",
+          200: "#bed8f2",
+          300: "#91bde5",
+          400: "#5f9bd3",
+          500: "#3e7fbd",
+          600: "#2c6aad",
+          700: "#24558e",
+          800: "#224977",
+          900: "#203e63",
+          950: "#162940"
+        },
+        gold: {
+          50: "#faf6e9",
+          100: "#f1e8c9",
+          200: "#e4d49b",
+          300: "#d2b961",
+          400: "#bd9c32",
+          500: "#ad8400",
+          600: "#ad8400",
+          700: "#876700",
+          800: "#66500b",
+          900: "#4b3b0c",
+          950: "#2b2209"
+        }
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
@@ -56,10 +95,10 @@ const config: Config = {
         "6xl": ["60px", "68px"]
       },
       borderRadius: {
-        lg: "12px",
-        xl: "16px",
-        "2xl": "24px",
-        "3xl": "32px"
+        lg: "10px",
+        xl: "12px",
+        "2xl": "16px",
+        "3xl": "24px"
       }
     }
   },

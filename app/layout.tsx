@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50">
+      <body className="text-neutral-900 dark:text-neutral-50">
         <Providers>
           <Navbar />
           <main className="min-h-screen">

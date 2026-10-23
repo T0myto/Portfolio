@@ -12,7 +12,7 @@ interface SectionTitleProps {
 export function SectionTitle({ title, subtitle, children }: SectionTitleProps) {
   return (
     <motion.div
-      className="text-center mb-16"
+      className="mb-12 border-b border-neutral-200 pb-8 text-left dark:border-neutral-800 md:mb-14"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.5 }}
@@ -30,20 +30,13 @@ export function SectionTitle({ title, subtitle, children }: SectionTitleProps) {
             transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
           },
         }}
-        className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-neutral-50"
+        className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-50 sm:text-4xl md:text-5xl"
       >
         {title}
       </motion.h2>
       <motion.div
-        variants={{
-          hidden: { opacity: 0, scaleX: 0.6 },
-          visible: {
-            opacity: 1,
-            scaleX: 1,
-            transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-          },
-        }}
-        className="mx-auto mt-5 mb-5 h-1 w-12 origin-center rounded-full bg-blue-500"
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        className="my-4 h-px w-12 origin-left bg-gold-600"
       />
       {subtitle && (
         <motion.p
@@ -55,7 +48,7 @@ export function SectionTitle({ title, subtitle, children }: SectionTitleProps) {
               transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
             },
           }}
-          className="text-neutral-600 dark:text-neutral-400 text-lg max-w-2xl mx-auto"
+          className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-lg"
         >
           {subtitle}
         </motion.p>

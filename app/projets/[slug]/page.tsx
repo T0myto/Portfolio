@@ -54,12 +54,24 @@ export default async function ProjectDetailPage({
         <MotionFade delay={0.1}>
           <div className="mb-12 space-y-4">
             <span
-              className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                project.status === "completed"
-                  ? "bg-green-500/10 text-green-700 dark:text-green-400"
-                  : "bg-blue-500/10 text-blue-700 dark:text-blue-400"
-              }`}
+              className="inline-flex items-center gap-2 text-xs font-medium text-neutral-700 dark:text-neutral-300"
             >
+              <span
+                aria-hidden="true"
+                className={`relative inline-flex h-3 w-3 shrink-0 items-center justify-center rounded-full ${
+                  project.status === "completed"
+                    ? "bg-green-400/20"
+                    : "bg-red-400/20"
+                }`}
+              >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full ${
+                    project.status === "completed"
+                      ? "bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.75)]"
+                      : "bg-red-400 shadow-[0_0_8px_rgba(248,113,113,0.75)]"
+                  }`}
+                />
+              </span>
               {project.status === "completed" ? "Complété" : "En cours"}
             </span>
             <h1 className="text-5xl font-bold">{project.title}</h1>

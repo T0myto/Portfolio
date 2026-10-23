@@ -1,13 +1,5 @@
 import Link from "next/link";
-import { Github, Linkedin } from "lucide-react";
-
-const footerLinks = [
-  { label: "Compétences", href: "/competences" },
-  { label: "Expériences", href: "/experiences" },
-  { label: "Projets", href: "/projets" },
-  { label: "Certifications", href: "/certification" },
-  { label: "Contact", href: "/contact" }
-];
+import { ArrowUpRight, Github, Linkedin } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, label: "GitHub", href: "https://github.com/T0myto" },
@@ -20,7 +12,7 @@ export function Footer() {
   return (
     <footer className="border-t border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
       <div className="page-container py-12">
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-3">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-900 font-mono text-[11px] font-bold text-white dark:bg-white dark:text-neutral-900">TM</span>
@@ -31,16 +23,11 @@ export function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Pied de page" className="grid grid-cols-2 gap-x-12 gap-y-3 sm:grid-cols-3">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <Link
+            href="/contact"
+            className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white md:pt-1">
+            Contact <ArrowUpRight size={15} />
+          </Link>
         </div>
 
         <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800 sm:flex-row sm:items-center">

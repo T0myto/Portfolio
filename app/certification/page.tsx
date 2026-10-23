@@ -71,6 +71,14 @@ export default function CertificationPage() {
                             className={`h-14 w-14 object-contain ${hasLightVariant ? "hidden dark:block" : ""}`}
                           />
                         </>
+                      ) : certification.logoUrl ? (
+                        <Image
+                          src={certification.logoUrl}
+                          alt={`Logo ${certification.organization}`}
+                          width={36}
+                          height={36}
+                          className="h-9 w-9 object-contain"
+                        />
                       ) : (
                         <Award size={24} className="text-blue-700" aria-hidden="true" />
                       )}

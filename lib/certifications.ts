@@ -8,6 +8,8 @@ export interface Certification {
   badgeUrl?: string;
   /** Variante du badge pour le thème clair, si le badge d’origine est prévu pour un fond sombre. */
   badgeLightUrl?: string;
+  /** Logo de l’organisme, affiché quand il n’existe pas de badge pour la certification. */
+  logoUrl?: string;
 }
 
 export const certifications: Certification[] = [
@@ -46,6 +48,7 @@ export const certifications: Certification[] = [
     date: "7 avril 2026",
     description: "Cours sur la création et l'administration d'applications conteneurisées avec Docker.",
     documentUrl: "/certifications/certification-docker.pdf",
+    logoUrl: "/certifications/logo-docker.svg",
   },
   {
     id: "cours-azure",
@@ -54,6 +57,7 @@ export const certifications: Certification[] = [
     date: "3 mars 2026",
     description: "Découverte des services cloud et des concepts fondamentaux de Microsoft Azure.",
     documentUrl: "/certifications/certification-azure.pdf",
+    logoUrl: "/certifications/logo-azure.svg",
   },
   {
     id: "certification-grafana",
@@ -61,6 +65,7 @@ export const certifications: Certification[] = [
     organization: "Grafana Labs",
     date: "7 mai 2026",
     description: "Cours sur la création de tableaux de bord et la visualisation des données de supervision.",
+    logoUrl: "/certifications/logo-grafana.svg",
   },
   {
     id: "certification-ccna",
@@ -68,6 +73,7 @@ export const certifications: Certification[] = [
     organization: "Cisco Networking Academy",
     date: "À venir",
     description: "Certification Cisco Certified Network Associate (CCNA) prévue.",
+    logoUrl: "/certifications/logo-cisco-ccna.svg",
   },
   {
     id: "certification-zabbix",
@@ -75,5 +81,6 @@ export const certifications: Certification[] = [
     organization: "Zabbix",
     date: "À venir",
     description: "Certification Zabbix prévue pour la fin de l'année scolaire.",
+    logoUrl: "/certifications/logo-zabbix.svg",
   },
 ];

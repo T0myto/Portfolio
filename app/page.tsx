@@ -26,13 +26,15 @@ const focusAreas = [
   },
 ];
 
+const featuredSlugs = ["infrastructure-logonet", "reseau-interservices-cisco", "facilock"];
+
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Home() {
   const latestExperience = experiences[experiences.length - 1];
-  const featuredProjects = projects
-    .filter((project) => project.status === "completed")
-    .slice(0, 3);
+  const featuredProjects = featuredSlugs
+    .map((slug) => projects.find((project) => project.slug === slug))
+    .filter((project) => project !== undefined);
   const stats = [
     { value: experiences.length, label: "Stages en entreprise" },
     { value: projects.length, label: "Projets réalisés" },

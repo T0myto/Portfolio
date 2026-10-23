@@ -29,11 +29,6 @@ export default function Home() {
   return (
     <>
       <section className="relative flex min-h-[calc(100svh-72px)] items-center overflow-hidden pt-24">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute -right-48 top-10 h-[34rem] w-[34rem] rounded-full border border-neutral-200/70 dark:border-neutral-800/70" />
-          <div className="absolute -right-24 top-32 h-[26rem] w-[26rem] rounded-full border border-neutral-200/70 dark:border-neutral-800/70" />
-        </div>
-
         <div className="relative mx-auto grid w-full max-w-6xl gap-14 px-6 pb-20 pt-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center lg:gap-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

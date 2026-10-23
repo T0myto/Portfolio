@@ -30,6 +30,12 @@ export default function CertificationPage() {
         <div className="grid gap-5 md:grid-cols-2">
           {orderedCertifications.map((certification, index) => {
             const upcoming = certification.date === "À venir";
+            // Badge prévu pour un fond sombre : variante claire en thème clair, fond sombre en thème sombre.
+            const hasLightVariant = Boolean(certification.badgeLightUrl);
+            const badgeAlt =
+              certification.id === "certification-voltaire"
+                ? "Logo officiel du Projet Voltaire"
+                : `Badge ${certification.organization} : ${certification.name}`;
 
             return (
               <MotionFade key={certification.id} delay={Math.min(index, 3) * 0.05}>
@@ -39,19 +45,32 @@ export default function CertificationPage() {
                   }`}
                 >
                   <div className="flex items-start gap-5">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-100">
+                    <div
+                      className={`flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border ${
+                        hasLightVariant
+                          ? "border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-950"
+                          : "border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-100"
+                      }`}
+                    >
                       {certification.badgeUrl ? (
-                        <Image
-                          src={certification.badgeUrl}
-                          alt={
-                            certification.id === "certification-voltaire"
-                              ? "Logo officiel du Projet Voltaire"
-                              : `Badge ${certification.organization} : ${certification.name}`
-                          }
-                          width={64}
-                          height={64}
-                          className="h-14 w-14 object-contain"
-                        />
+                        <>
+                          {certification.badgeLightUrl && (
+                            <Image
+                              src={certification.badgeLightUrl}
+                              alt={badgeAlt}
+                              width={64}
+                              height={64}
+                              className="h-14 w-14 object-contain dark:hidden"
+                            />
+                          )}
+                          <Image
+                            src={certification.badgeUrl}
+                            alt={badgeAlt}
+                            width={64}
+                            height={64}
+                            className={`h-14 w-14 object-contain ${hasLightVariant ? "hidden dark:block" : ""}`}
+                          />
+                        </>
                       ) : (
                         <Award size={24} className="text-blue-700" aria-hidden="true" />
                       )}

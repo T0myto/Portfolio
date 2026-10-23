@@ -6,6 +6,8 @@ export interface Certification {
   description: string;
   documentUrl?: string;
   badgeUrl?: string;
+  /** Variante du badge pour le thème clair, si le badge d’origine est prévu pour un fond sombre. */
+  badgeLightUrl?: string;
 }
 
 export const certifications: Certification[] = [
@@ -17,6 +19,7 @@ export const certifications: Certification[] = [
     description: "Attestation de participation à une formation consacrée à l’orthographe.",
     documentUrl: "/certifications/certification-voltaire.pdf",
     badgeUrl: "/certifications/badge-voltaire.svg",
+    badgeLightUrl: "/certifications/badge-voltaire-light.svg",
   },
   {
     id: "certification-reseau",
